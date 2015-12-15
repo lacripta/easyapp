@@ -1,0 +1,140 @@
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Dec 11, 2015 15:12PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+</p>
+
+		<p><strong>Code:</strong> 2002</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 57</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(57): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\wamp\www\easyapp\app\core\model.php(25): helpers\Database::get()
+#2 C:\wamp\www\easyapp\app\controllers\admin\carrusel.php(18): core\Model->__construct()
+#3 C:\wamp\www\easyapp\app\core\router.php(80): controllers\admin\Carrusel->__construct(NULL)
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(138): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Dec 11, 2015 12:06PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[HY000]: General error: 1442 Can't update table 'galeria' in stored function/trigger because it is already used by statement which invoked this stored function/trigger.</p>
+
+		<p><strong>Code:</strong> HY000</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 164</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(164): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\carrusel.php(20): helpers\Database->update('galeria', Array, Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\carrusel.php(121): models\admin\Carrusel->elemento_editar(Array, Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Carrusel->elemento_editar()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(138): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Dec 10, 2015 18:59PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'asdasdasd' for key 'galeria_titulo'</p>
+
+		<p><strong>Code:</strong> 23000</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 116</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(116): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\carrusel.php(15): helpers\Database->insert('galeria', Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\carrusel.php(81): models\admin\Carrusel->elemento_nuevo(Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Carrusel->elemento_nuevo()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(135): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Dec 10, 2015 18:04PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '/easyart/img/carrusel/caro1.jpg' for key 'galeria_url'</p>
+
+		<p><strong>Code:</strong> 23000</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 116</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(116): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\carrusel.php(15): helpers\Database->insert('galeria', Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\carrusel.php(81): models\admin\Carrusel->elemento_nuevo(Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Carrusel->elemento_nuevo()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(135): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Dec 10, 2015 18:03PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '/easyart/img/carrusel/caro1.jpg' for key 'galeria_url'</p>
+
+		<p><strong>Code:</strong> 23000</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 116</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(116): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\carrusel.php(15): helpers\Database->insert('galeria', Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\carrusel.php(81): models\admin\Carrusel->elemento_nuevo(Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Carrusel->elemento_nuevo()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(135): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Dec 10, 2015 18:02PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '/easyart/img/carrusel/caro1.jpg' for key 'galeria_url'</p>
+
+		<p><strong>Code:</strong> 23000</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 116</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(116): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\carrusel.php(15): helpers\Database->insert('galeria', Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\carrusel.php(81): models\admin\Carrusel->elemento_nuevo(Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Carrusel->elemento_nuevo()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(135): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<p>Error on Dec 10, 2015 13:44PM - move_uploaded_file(C:\wamp\wwwasyart\img/ caro1.jpg): failed to open stream: Invalid argument in C:\wamp\www\easyapp\app\controllers\admin\carrusel.php on line 137</p><p>Error on Dec 10, 2015 13:42PM - move_uploaded_file(//easyart/img/caro1.jpg): failed to open stream: No such file or directory in C:\wamp\www\easyapp\app\controllers\admin\carrusel.php on line 137</p><p>Error on Dec 10, 2015 13:41PM - move_uploaded_file(/easyart/img/caro1.jpg): failed to open stream: No such file or directory in C:\wamp\www\easyapp\app\controllers\admin\carrusel.php on line 137</p><p>Error on Dec 10, 2015 13:41PM - move_uploaded_file(/easyart/img/1297580331.jpg): failed to open stream: No such file or directory in C:\wamp\www\easyapp\app\controllers\admin\carrusel.php on line 137</p><p>Error on Dec 10, 2015 13:40PM - move_uploaded_file(/easyart/img/145490452.jpg): failed to open stream: No such file or directory in C:\wamp\www\easyapp\app\controllers\admin\carrusel.php on line 137</p><p>Error on Dec 10, 2015 13:38PM - move_uploaded_file(/easyart/img/155258666.jpg): failed to open stream: No such file or directory in C:\wamp\www\easyapp\app\controllers\admin\carrusel.php on line 136</p>

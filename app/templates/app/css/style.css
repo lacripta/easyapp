@@ -1,0 +1,23 @@
+/* Your styles here */
+
+fieldset {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove;
+}
+::-webkit-input-placeholder {
+    font-size: 0.8em;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    font-size: 0.8em;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 0.8em;
+}

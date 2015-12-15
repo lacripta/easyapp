@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="492.6893"
+   height="148.86349"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="C:\wamp\www\saman\img\logo_a.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <radialGradient
+       id="radialGradient3007"
+       spreadMethod="pad"
+       gradientTransform="matrix(0,241.83046,627.00269,0,396.00195,306)"
+       gradientUnits="userSpaceOnUse"
+       r="1"
+       cy="0"
+       cx="0"
+       fy="0"
+       fx="0">
+      <stop
+         id="stop3009"
+         offset="0"
+         style="stop-opacity:1;stop-color:#ffffff" />
+      <stop
+         id="stop3011"
+         offset="1"
+         style="stop-opacity:1;stop-color:#a7a5a6" />
+    </radialGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="312.55804"
+     inkscape:cy="101.85301"
+     inkscape:document-units="px"
+     inkscape:current-layer="g2993"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-122.48296,-195.82237)">
+    <g
+       transform="matrix(1.25,0,0,-1.25,-66.428569,883.43357)"
+       inkscape:label="Manual de Marca Saman (1)"
+       id="g2993">
+      <text
+         id="text3031"
+         transform="scale(1,-1)"
+         x="302.62894"
+         y="-512.90704"
+         style="fill:#1a1a1a">
+        <tspan
+           id="tspan3033"
+           sodipodi:role="line"
+           y="-512.90704"
+           x="302.62894 329.35123 350.28052 383.82214 404.55377 409.98944"
+           style="font-size:38.01179885999999900px;font-variant:normal;font-weight:200;font-stretch:normal;writing-mode:lr-tb;fill:#1a1a1a;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:ClementePDac;-inkscape-font-specification:ClementePDac-ExtraLight">Cambios el</tspan>
+      </text>
+      <text
+         id="text3035"
+         transform="scale(1,-1)"
+         x="289.86133"
+         y="-452.92606"
+         style="fill:#1a1a1a">
+        <tspan
+           id="tspan3037"
+           sodipodi:role="line"
+           y="-452.92606"
+           x="289.86133 335.63837 385.1402 452.82959 502.33139"
+           style="font-size:69.23329925999999500px;font-variant:normal;font-weight:800;font-stretch:normal;writing-mode:lr-tb;fill:#1a1a1a;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:ClementePDaq;-inkscape-font-specification:ClementePDaq-UltraBold">Saman</tspan>
+      </text>
+      <g
+         transform="translate(198.95602,471.54326)"
+         id="g3039"
+         inkscape:export-filename="C:\Users\JOSE_\Documents\NetBeansProjects\ng-saman\app\components\logo.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           id="path3041"
+           style="fill:#fab20b;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 45.994,-40.395 0.179,0 0,79.606 L 0,0 z"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         transform="translate(246.82762,510.94616)"
+         id="g3043"
+         inkscape:export-filename="C:\Users\JOSE_\Documents\NetBeansProjects\ng-saman\app\components\logo.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           id="path3045"
+           style="fill:#fab20b;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 30.301,-79.948 0,105.568 L 0,0 z"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         transform="translate(199.43212,471.89876)"
+         id="g3047"
+         inkscape:export-filename="C:\Users\JOSE_\Documents\NetBeansProjects\ng-saman\app\components\logo.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           id="path3049"
+           style="fill:#fddd04;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 0,0 -47.866,-40.471 63.036,0 30.531,0 L 0,0 z"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         transform="translate(228.25782,508.43146)"
+         id="g3051"
+         inkscape:export-filename="C:\Users\JOSE_\Documents\NetBeansProjects\ng-saman\app\components\logo.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           id="path3053"
+           style="fill:#fab20b;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 -45.038,39.717 -2.091,0 0,-78.247 L 0,0 z"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         transform="translate(181.42822,469.71026)"
+         id="g3055"
+         inkscape:export-filename="C:\Users\JOSE_\Documents\NetBeansProjects\ng-saman\app\components\logo.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           id="path3057"
+           style="fill:#fab20b;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 -30.299,79.948 0,-105.568 L 0,0 z"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         transform="translate(229.10602,509.61796)"
+         id="g3059"
+         inkscape:export-filename="C:\Users\JOSE_\Documents\NetBeansProjects\ng-saman\app\components\logo.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90">
+        <path
+           id="path3061"
+           style="fill:#fddd04;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 0,0 47.866,40.471 -63.034,0 -30.533,0 L 0,0 z"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+  </g>
+</svg>
