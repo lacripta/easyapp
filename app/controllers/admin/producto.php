@@ -28,34 +28,47 @@ class Producto extends \core\Controller
         $this->archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
 
         $this->archivo["elementos"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["elementos"]["componente_enlace"] = ADMIN . "producto/elementos";
+        $this->archivo["elementos"]["componente_enlace"] = ADMIN . "elementos";
         $this->archivo["elementos"]["componente_url"] = DIR . ADMIN . "producto/elementos";
         $this->archivo["elementos"]["componente_nombre"] = "Lista de productos";
         $this->archivo["elementos"]["componente_slug"] = Url::generateSafeSlug($this->archivo["elementos"]["componente_nombre"]);
 
         $this->archivo["nuevo"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["nuevo"]["componente_enlace"] = ADMIN . "producto/elemento_nuevo";
+        $this->archivo["nuevo"]["componente_enlace"] = ADMIN . "elemento_nuevo";
         $this->archivo["nuevo"]["componente_url"] = DIR . ADMIN . "producto/elemento_nuevo";
         $this->archivo["nuevo"]["componente_nombre"] = "Agregar producto";
         $this->archivo["nuevo"]["componente_slug"] = Url::generateSafeSlug($this->archivo["nuevo"]["componente_nombre"]);
 
         $this->archivo["editar"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["editar"]["componente_enlace"] = ADMIN . "producto/elemento_editar";
+        $this->archivo["editar"]["componente_enlace"] = ADMIN . "elemento_editar";
         $this->archivo["editar"]["componente_url"] = DIR . ADMIN . "producto/elemento_editar";
         $this->archivo["editar"]["componente_nombre"] = "Editar producto";
         $this->archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["editar"]["componente_nombre"]);
 
         $this->archivo["borrar"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["borrar"]["componente_enlace"] = ADMIN . "producto/elemento_borrar";
+        $this->archivo["borrar"]["componente_enlace"] = ADMIN . "elemento_borrar";
         $this->archivo["borrar"]["componente_url"] = DIR . ADMIN . "producto/elemento_borrar";
         $this->archivo["borrar"]["componente_nombre"] = "Borrar producto";
         $this->archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["borrar"]["componente_nombre"]);
 
         $this->archivo["publicar"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["publicar"]["componente_enlace"] = ADMIN . "producto/elemento_publicar";
+        $this->archivo["publicar"]["componente_enlace"] = ADMIN . "elemento_publicar";
         $this->archivo["publicar"]["componente_url"] = DIR . ADMIN . "producto/elemento_publicar";
         $this->archivo["publicar"]["componente_nombre"] = "Publicar producto";
         $this->archivo["publicar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["publicar"]["componente_nombre"]);
+
+        $this->archivo["grupo"]["componente_archivo"] = $this->archivoNombre;
+        $this->archivo["grupo"]["componente_enlace"] = ADMIN . "producto_grupo";
+        $this->archivo["grupo"]["componente_url"] = DIR . ADMIN . "producto/producto_grupo";
+        $this->archivo["grupo"]["componente_nombre"] = "Grupos de productos";
+        $this->archivo["grupo"]["componente_slug"] = Url::generateSafeSlug($this->archivo["grupo"]["componente_nombre"]);
+
+        $this->archivo["categoria"]["componente_archivo"] = $this->archivoNombre;
+        $this->archivo["categoria"]["componente_enlace"] = ADMIN . "producto_categoria";
+        $this->archivo["categoria"]["componente_url"] = DIR . ADMIN . "producto/producto_categoria";
+        $this->archivo["categoria"]["componente_nombre"] = "Categorias de producto";
+        $this->archivo["categoria"]["componente_slug"] = Url::generateSafeSlug($this->archivo["categoria"]["componente_nombre"]);
+
         foreach ($this->archivo as $componente)
         {
             $this->componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
@@ -79,20 +92,34 @@ class Producto extends \core\Controller
         echo $this->model->productos();
     }
 
+    public function producto_grupo()
+    {
+        echo $this->model->producto_grupo(filter_input(INPUT_POST, "dato"));
+    }
+
+    public function producto_categoria()
+    {
+        echo $this->model->producto_categoria(filter_input(INPUT_POST, "dato"));
+    }
+
     public function elemento_nuevo()
     {
-        $galeria_descripcion = filter_input(INPUT_POST, "galeria_descripcion");
-        $galeria_titulo = filter_input(INPUT_POST, "galeria_titulo");
-        $galeria_nombre = filter_input(INPUT_POST, "galeria_nombre");
-        $galeria_url = $this->componente->subir_imagen("image_file", "carrusel");
-        //echo $galeria_descripcion . $galeria_titulo . $galeria_nombre . $galeria_url["estado"];
-        if ($galeria_descripcion != "" && $galeria_titulo != "" && $galeria_nombre != "" && $galeria_url["estado"])
+        $producto_categoria = filter_input(INPUT_POST, "producto_categoria");
+        $producto_descripcion = filter_input(INPUT_POST, "producto_descripcion");
+        $producto_existencias = filter_input(INPUT_POST, "producto_existencias");
+        $producto_grupo = filter_input(INPUT_POST, "producto_grupo");
+        $producto_nombre = filter_input(INPUT_POST, "producto_nombre");
+        $producto_precio = filter_input(INPUT_POST, "producto_precio");
+
+        if ($producto_categoria != "" && $producto_descripcion != "" && $producto_existencias != "" && $producto_grupo != "" && $producto_nombre != "" && $producto_precio != "")
         {
             $datos = [
-                "galeria_descripcion" => $galeria_descripcion,
-                "galeria_titulo" => $galeria_titulo,
-                "galeria_nombre" => $galeria_nombre,
-                "galeria_url" => $galeria_url["url"]
+                "producto_categoria" => $producto_categoria,
+                "producto_descripcion" => $producto_descripcion,
+                "producto_existencias" => $producto_existencias,
+                "producto_grupo" => $producto_grupo,
+                "producto_nombre" => $producto_nombre,
+                "producto_precio" => $producto_precio
             ];
             echo $this->model->producto_nuevo($datos);
         }
@@ -100,40 +127,39 @@ class Producto extends \core\Controller
 
     public function elemento_editar()
     {
-        $galeria_id = filter_input(INPUT_POST, "galeria_id");
-        $galeria_descripcion = filter_input(INPUT_POST, "galeria_descripcion");
-        $galeria_titulo = filter_input(INPUT_POST, "galeria_titulo");
-        $galeria_nombre = filter_input(INPUT_POST, "galeria_nombre");
-        $galeria_url = $this->componente->subir_imagen("image_file", "carrusel");
-        if ($galeria_descripcion != "" && $galeria_titulo != "" && $galeria_nombre != "")
+        $producto_categoria = filter_input(INPUT_POST, "producto_categoria");
+        $producto_descripcion = filter_input(INPUT_POST, "producto_descripcion");
+        $producto_existencias = filter_input(INPUT_POST, "producto_existencias");
+        $producto_grupo = filter_input(INPUT_POST, "producto_grupo");
+        $producto_nombre = filter_input(INPUT_POST, "producto_nombre");
+        $producto_precio = filter_input(INPUT_POST, "producto_precio");
+
+        if ($producto_categoria != "" && $producto_descripcion != "" && $producto_existencias != "" && $producto_grupo != "" && $producto_nombre != "" && $producto_precio != "")
         {
             $datos = [
-                "galeria_descripcion" => $galeria_descripcion,
-                "galeria_titulo" => $galeria_titulo,
-                "galeria_nombre" => $galeria_nombre
+                "producto_categoria" => $producto_categoria,
+                "producto_descripcion" => $producto_descripcion,
+                "producto_existencias" => $producto_existencias,
+                "producto_grupo" => $producto_grupo,
+                "producto_nombre" => $producto_nombre,
+                "producto_precio" => $producto_precio
             ];
-            //echo "estado " . print_r($galeria_url);
-            if ($galeria_url["estado"] == "1")
-            {
-                $datos["galeria_url"] = $galeria_url["url"];
-            }
-            echo $datos["galeria_url"] . $galeria_id;
-            $this->model->producto_editar($datos, ["galeria_id" => $galeria_id]);
+//print_r($datos);
+//print_r(filter_input(INPUT_POST, "producto_id"));
+            echo $this->model->producto_editar($datos, ["producto_id" => filter_input(INPUT_POST, "producto_id")]);
         }
     }
 
     public function elemento_borrar()
     {
-        $galeria_id = filter_input(INPUT_POST, "galeria_id");
-        echo $this->model->producto_borrar(["galeria_id" => $galeria_id]);
+        echo $this->model->producto_borrar(["producto_id" => filter_input(INPUT_POST, "producto_id")]);
     }
 
     public function elemento_publicar()
     {
-        $galeria_id = filter_input(INPUT_POST, "galeria_id");
-        $galeria_estado = filter_input(INPUT_POST, "galeria_estado") == "0" ? "1" : "0";
-        $update = $this->model->producto_editar(["galeria_estado" => $galeria_estado], ["galeria_id" => $galeria_id]);
-        echo "{\"galeria_estado\":\"$galeria_estado\", \"update\":\"$update\"}";
+        $producto_estado = filter_input(INPUT_POST, "producto_estado") == "0" ? "1" : "0";
+        $update = $this->model->producto_editar(["producto_estado" => $producto_estado], ["producto_id" => filter_input(INPUT_POST, "producto_id")]);
+        echo "{\"producto_estado\":\"$producto_estado\", \"update\":\"$update\"}";
     }
 
 }
