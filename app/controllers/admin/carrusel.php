@@ -28,31 +28,31 @@ class Carrusel extends \core\Controller
         $this->archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
 
         $this->archivo["elementos"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["elementos"]["componente_enlace"] = ADMIN . "carrusel/elementos";
+        $this->archivo["elementos"]["componente_enlace"] = ADMIN . "elementos";
         $this->archivo["elementos"]["componente_url"] = DIR . ADMIN . "carrusel/elementos";
         $this->archivo["elementos"]["componente_nombre"] = "Lista de elementos del carrusel";
         $this->archivo["elementos"]["componente_slug"] = Url::generateSafeSlug($this->archivo["elementos"]["componente_nombre"]);
 
         $this->archivo["nuevo"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["nuevo"]["componente_enlace"] = ADMIN . "carrusel/elemento_nuevo";
+        $this->archivo["nuevo"]["componente_enlace"] = ADMIN . "elemento_nuevo";
         $this->archivo["nuevo"]["componente_url"] = DIR . ADMIN . "carrusel/elemento_nuevo";
         $this->archivo["nuevo"]["componente_nombre"] = "Agregar elemento al carrusel";
         $this->archivo["nuevo"]["componente_slug"] = Url::generateSafeSlug($this->archivo["nuevo"]["componente_nombre"]);
 
         $this->archivo["editar"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["editar"]["componente_enlace"] = ADMIN . "carrusel/elemento_editar";
+        $this->archivo["editar"]["componente_enlace"] = ADMIN . "elemento_editar";
         $this->archivo["editar"]["componente_url"] = DIR . ADMIN . "carrusel/elemento_editar";
         $this->archivo["editar"]["componente_nombre"] = "Editar elemento al carrusel";
         $this->archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["editar"]["componente_nombre"]);
 
         $this->archivo["borrar"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["borrar"]["componente_enlace"] = ADMIN . "carrusel/elemento_borrar";
+        $this->archivo["borrar"]["componente_enlace"] = ADMIN . "elemento_borrar";
         $this->archivo["borrar"]["componente_url"] = DIR . ADMIN . "carrusel/elemento_borrar";
         $this->archivo["borrar"]["componente_nombre"] = "Borrar elemento al carrusel";
         $this->archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["borrar"]["componente_nombre"]);
 
         $this->archivo["publicar"]["componente_archivo"] = $this->archivoNombre;
-        $this->archivo["publicar"]["componente_enlace"] = ADMIN . "carrusel/elemento_publicar";
+        $this->archivo["publicar"]["componente_enlace"] = ADMIN . "elemento_publicar";
         $this->archivo["publicar"]["componente_url"] = DIR . ADMIN . "carrusel/elemento_publicar";
         $this->archivo["publicar"]["componente_nombre"] = "Publicar elemento al carrusel";
         $this->archivo["publicar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["publicar"]["componente_nombre"]);
