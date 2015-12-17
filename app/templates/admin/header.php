@@ -4,7 +4,7 @@
 
         <!-- Site meta -->
         <meta charset="utf-8">
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                                          ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                                               ?></title>
 
         <!-- CSS -->
         <?php
@@ -53,6 +53,7 @@
         helpers\assets::css(array(
             'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css',
             helpers\url::admin_template_path() . 'css/style.css',
+            helpers\url::admin_template_path() . 'css/jquery.auto-complete.css',
             helpers\url::admin_template_path() . 'css/roboto.min.css',
             helpers\url::admin_template_path() . 'css/material.min.css',
             helpers\url::admin_template_path() . 'css/jquery.dropdown.css',
@@ -66,7 +67,9 @@
             '//code.jquery.com/jquery-1.11.2.min.js',
             'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js',
             'https://cdn.datatables.net/s/dt/dt-1.10.10,af-2.1.0,r-2.0.0,sc-1.4.0,se-1.1.0/datatables.min.js',
-            'http://js.nicedit.com/nicEdit-latest.js',
+            '//cdn.tinymce.com/4/tinymce.min.js',
+            helpers\url::admin_template_path() . 'js/jquery.auto-complete.min.js',
+            helpers\url::admin_template_path() . 'js/tinymce/langs/es.js',
             helpers\url::admin_template_path() . 'js/accounting.min.js',
             helpers\url::admin_template_path() . 'js/jquery.filter_input.js',
             helpers\url::admin_template_path() . 'js/jquery.form.min.js',
