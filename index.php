@@ -135,6 +135,8 @@ Router::any('admin/producto/elemento_publicar', '\controllers\admin\producto@ele
 Router::any('admin/producto/imagenes/..(:num)', '\controllers\admin\producto_imagen@index');
 Router::any('admin/producto/imagenes/agregar_imagen', '\controllers\admin\producto_imagen@agregar_imagen');
 Router::any('admin/producto/imagenes/imagenes_producto', '\controllers\admin\producto_imagen@imagenes');
+Router::any('admin/producto/imagenes/publicar_imagen', '\controllers\admin\producto_imagen@imagen_publicar');
+Router::any('admin/producto/imagenes/borrar/..(:num)', '\controllers\admin\producto_imagen@imagen_borrar');
 
 
 //if no route found

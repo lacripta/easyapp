@@ -1,6 +1,7 @@
 <ol class="breadcrumb">
     <li><a href="<?php echo $data["inicio"]; ?>">Inicio</a></li>
     <li><a href="<?php echo $data["producto"]; ?>">Productos</a></li>
+    <li><?php echo $data["title"]; ?></li>
 </ol>
 <legend><h3><?php echo $data["title"]; ?></h3></legend>
 
@@ -20,7 +21,7 @@
     <div align="center" class="col-sm-6">
         <h3 id="FormTitulo">Informacion de la imagen para el Carrusel</h3>
         <div class="label label-default">Formatos Permitidos: Jpeg, Jpg, Png, Gif. | Tamaño maximo 1 MB</div>
-        <form action="/easyapp/admin/producto/agregar_imagen" onsubmit="return false" method="post" enctype="multipart/form-data" id="MyUploadForm">
+        <form action="/easyapp/admin/producto/imagenes/agregar_imagen" onsubmit="return false" method="post" enctype="multipart/form-data" id="MyUploadForm">
             <input name="image_file" id="imageInput" type="file">
             <div id="progressbox" style="display: block;">
                 <div id="progressbar" style="width: 100%;"></div>
@@ -50,13 +51,50 @@
         <img src="" class="img-responsive img-thumbnail" id="loading-img">
     </div>
 </div>
-<script type="text/javascript">
-    function imagenes() {
-        var imagenes = getJson("/easyapp/admin/producto/imagenes/imagenes_producto", {producto_id: <?php echo $data["elemento"]->producto_id; ?>});
-    }
 
+<?php
+foreach ($data["imagenes"] as $imagen)
+{
+    ?>
+    <!--<div class="col-xs-3">
+        <div class="hovereffect">
+            <img id="" class="img-responsive thumbnail" src="<?php echo $imagen->producto_imagen_url; ?>" alt="<?php echo $imagen->producto_imagen_descripcion; ?>" width="100%">
+            <div class="overlay">
+                <h2 id="control-nombre-<?php echo $imagen->producto_id; ?>">
+    <?php echo $imagen->producto_imagen_nombre; ?>
+                    <span id="estado-visible-<?php echo $imagen->producto_id; ?>" style='font-size: 16px' class='glyphicon glyphicon-eye-open <?php echo $imagen->producto_estado ? "text-success" : "text-danger"; ?>' aria-hidden='true'></span>
+                </h2>
+                <a id="control-borrar-<?php echo $imagen->producto_id; ?>" class="info btn btn-warning" href="/easy/app/admin/producto/imagenes/borrar/..<?php echo $imagen->producto_imagen_id; ?>">Borrar</a>
+                <a id="control-visible-<?php echo $imagen->producto_id; ?>" class="info btn btn-success" href="/easy/app/admin/producto/imagenes/imagen_estado/..<?php echo $imagen->producto_imagen_id; ?>,<?php echo $imagen->producto_imagen_estado; ?>">Visible</a>
+            </div>
+        </div>
+    </div>-->
+    <div class="col-md-4 portfolio-item">
+        <a href="#">
+            <img class="img-responsive" src="<?php echo $imagen->producto_imagen_url; ?>" alt="<?php echo $imagen->producto_imagen_titulo; ?>" width="100%">
+        </a>
+        <h3>
+            <a href="#"><?php echo $imagen->producto_imagen_nombre; ?></a>
+        </h3>
+        <span id="estado-visible-<?php echo $imagen->producto_id; ?>" style='font-size: 16px' class='glyphicon glyphicon-eye-open <?php echo $imagen->producto_imagen_estado ? "text-success" : "text-danger"; ?>' aria-hidden='true'></span>
+        <p><?php echo $imagen->producto_imagen_descripcion; ?></p>
+        <button id="control-borrar-<?php echo $imagen->producto_id; ?>" class="info btn btn-warning" onclick="borrar('/easyapp/admin/producto/imagenes/borrar/..<?php echo $imagen->producto_imagen_id; ?>')">Borrar</button>
+        <button id="control-visible-<?php echo $imagen->producto_id; ?>" class="info btn btn-success" onclick="publicar('/easyapp/admin/producto/imagenes/publicar_imagen',<?php echo $imagen->producto_imagen_id; ?>, <?php echo $imagen->producto_imagen_estado; ?>)">Visible</button>
+    </div>
+<?php } ?>
+
+
+
+<script type="text/javascript">
+    function borrar(url) {
+        getJson(url, {});
+        location.reload();
+    }
+    function publicar(url, id, estado) {
+        getJson(url, {producto_imagen_id: id, producto_imagen_estado: estado});
+        location.reload();
+    }
     $(document).ready(function () {
-        imagenes();
         $('#producto_categoria').autoComplete({
             minChars: 0,
             source: function (term, response) {
