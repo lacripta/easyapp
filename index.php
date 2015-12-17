@@ -125,11 +125,16 @@ Router::any('admin/carrusel/elemento_borrar', '\controllers\admin\carrusel@eleme
 Router::any('admin/carrusel/elemento_publicar', '\controllers\admin\carrusel@elemento_publicar');
 //administrador de productos
 Router::any('admin/producto', '\controllers\admin\producto@index');
+Router::any('admin/producto/producto_grupo', '\controllers\admin\producto@producto_grupo');
+Router::any('admin/producto/producto_categoria', '\controllers\admin\producto@producto_categoria');
 Router::any('admin/producto/elementos', '\controllers\admin\producto@elementos');
 Router::any('admin/producto/elemento_nuevo', '\controllers\admin\producto@elemento_nuevo');
 Router::any('admin/producto/elemento_editar', '\controllers\admin\producto@elemento_editar');
 Router::any('admin/producto/elemento_borrar', '\controllers\admin\producto@elemento_borrar');
 Router::any('admin/producto/elemento_publicar', '\controllers\admin\producto@elemento_publicar');
+Router::any('admin/producto/imagenes/..(:num)', '\controllers\admin\producto_imagen@index');
+Router::any('admin/producto/imagenes/agregar_imagen', '\controllers\admin\producto_imagen@agregar_imagen');
+Router::any('admin/producto/imagenes/imagenes_producto', '\controllers\admin\producto_imagen@imagenes');
 
 
 //if no route found
