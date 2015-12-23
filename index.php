@@ -132,11 +132,20 @@ Router::any('admin/producto/elemento_nuevo', '\controllers\admin\producto@elemen
 Router::any('admin/producto/elemento_editar', '\controllers\admin\producto@elemento_editar');
 Router::any('admin/producto/elemento_borrar', '\controllers\admin\producto@elemento_borrar');
 Router::any('admin/producto/elemento_publicar', '\controllers\admin\producto@elemento_publicar');
+Router::any('admin/producto/elemento_destacar', '\controllers\admin\producto@elemento_destacado');
 Router::any('admin/producto/imagenes/..(:num)', '\controllers\admin\producto_imagen@index');
 Router::any('admin/producto/imagenes/agregar_imagen', '\controllers\admin\producto_imagen@agregar_imagen');
 Router::any('admin/producto/imagenes/imagenes_producto', '\controllers\admin\producto_imagen@imagenes');
 Router::any('admin/producto/imagenes/publicar_imagen', '\controllers\admin\producto_imagen@imagen_publicar');
 Router::any('admin/producto/imagenes/borrar/..(:num)', '\controllers\admin\producto_imagen@imagen_borrar');
+//DATA FEDD DE EASYART
+Router::any('admin/producto/lista', '\controllers\admin\data_feed@productos');
+Router::any('admin/producto/categorias', '\controllers\admin\data_feed@categorias');
+Router::any('admin/producto/grupos', '\controllers\admin\data_feed@grupos');
+Router::any('admin/producto/filtro_productos', '\controllers\admin\data_feed@filtro_productos');
+Router::any('admin/producto/productos_categoria', '\controllers\admin\data_feed@productos_categoria');
+Router::any('admin/producto/detalles_producto', '\controllers\admin\data_feed@detalles_producto');
+Router::any('admin/producto/carrusel', '\controllers\admin\data_feed@galeria');
 
 
 //if no route found

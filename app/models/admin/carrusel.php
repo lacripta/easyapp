@@ -7,7 +7,12 @@ class Carrusel extends \core\Model
 
     public function elementos()
     {
-        return json_encode($this->_db->select("SELECT * FROM galeria order by galeria_fecha, galeria_estado", []));
+        return json_encode($this->_db->select("SELECT * FROM galeria ORDER BY galeria_fecha, galeria_estado", []));
+    }
+
+    public function elementos_pagina()
+    {
+        return json_encode($this->_db->select("SELECT * FROM galeria WHERE galeria_estado = 1 ORDER BY galeria_fecha, galeria_estado", []));
     }
 
     public function elemento_nuevo($datos)

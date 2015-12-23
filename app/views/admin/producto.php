@@ -23,13 +23,16 @@
                                 <input type="text" class="form-control floating-label" placeholder="Nombre del Producto" name="producto_nombre" id="producto_nombre">
                             </div>
                             <div class="form-group">
+                                <input type="text" class="form-control floating-label" placeholder="Resumen del producto" name="producto_resumen" id="producto_resumen">
+                            </div>
+                            <div class="form-group">
                                 <textarea style="width: 100%;" name="producto_descripcion" id="producto_descripcion"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control floating-label" placeholder="Grupo de producto" name="producto_grupo" id="producto_grupo">
+                                <input type="text" class="form-control floating-label" placeholder="Categoria de producto" name="producto_categoria" id="producto_categoria">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control floating-label" placeholder="Categoria de producto" name="producto_categoria" id="producto_categoria">
+                                <input type="text" class="form-control floating-label" placeholder="Grupo de producto" name="producto_grupo" id="producto_grupo">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control floating-label" placeholder="Existencias en Inventario" name="producto_existencias" id="producto_existencias">
@@ -40,6 +43,7 @@
                             <input type="submit" id="submit-btn" class="btn btn-info" value="Guardar" onclick="$('#jcartModal').modal('hide');">
                             <input type="hidden" id="producto_id" name="producto_id" value="">
                             <input type="hidden" id="producto_estado" name="producto_estado" value="">
+                            <input type="hidden" id="producto_destacado" name="producto_destacado" value="">
                             <input type="hidden" id="producto_fecha" name="producto_fecha" value="">
                         </form>
                     </div>
@@ -51,6 +55,7 @@
                     <input type="hidden" id="ignorar_vacio" value="1">
                     <a href="#" class="btn btn-warning" id="elemento_borrar" onclick="borrar()">Borrar</a>
                     <a href="#" class="btn btn-default" id="elemento_publicar" onclick="publicar()">Publicado</a>
+                    <a href="#" class="btn btn-info" id="elemento_destacar" onclick="destacar()">Destacado</a>
                     <a href="#" class="btn btn-primary" id="elemento_imagenes">Imágenes</a>
                 </div>
                 <span class="toggle"></span>
@@ -77,6 +82,7 @@
         $('#jcartModal').modal('show');
         $("#control_editar").show();
         $("#producto_nombre").val(data.producto_nombre);
+        $("#producto_resumen").val(data.producto_resumen);
         $('#elemento_imagenes').attr('href', '/easyapp/admin/producto/imagenes/..' + data.producto_id);
         $("#producto_grupo").val(data.producto_grupo);
         $("#producto_categoria").val(data.producto_categoria);
@@ -84,6 +90,7 @@
         $("#producto_fecha").val(data.producto_fecha);
         $("#producto_precio").val(data.producto_precio);
         $("#producto_estado").val(data.producto_estado);
+        $("#producto_destacado").val(data.producto_destacado);
         $("#producto_existencias").val(data.producto_existencias);
         $("#jcartModalLabel").html("Editar la informacion de " + data.producto_nombre);
         $("#FormTitulo").html("Detalles del Producto");
@@ -92,6 +99,13 @@
             $("#elemento_publicar").addClass("btn-success");
         } else {
             $("#elemento_publicar").addClass("btn-danger");
+        }
+
+        $("#elemento_destacar").removeClass("btn-default btn-danger btn-info");
+        if (data.producto_destacado === "1") {
+            $("#elemento_destacar").addClass("btn-info");
+        } else {
+            $("#elemento_destacar").addClass("btn-danger");
         }
 
     }
@@ -105,8 +119,17 @@
         }
     }
 
+    function destacar() {
+        var cambio = getJson('/easyapp/admin/producto/elemento_destacar', {"producto_id": $("#producto_id").val(), "producto_destacado": $("#producto_destacado").val()});
+        if (cambio.update == "1") {
+            $('#jcartModal').modal('hide');
+            $('#myTable').dataTable().fnDestroy();
+            construir();
+        }
+    }
+
     function borrar() {
-        getJson('/easyapp/admin/carrusel/elemento_borrar', {"producto_id": $("#producto_id").val()});
+        getJson('/easyapp/admin/producto/elemento_borrar', {"producto_id": $("#producto_id").val()});
         $('#jcartModal').modal('hide');
         $('#myTable').dataTable().fnDestroy();
         construir();
@@ -148,6 +171,13 @@
                         } else {
                             return "<span style='font-size: 16px' class='glyphicon glyphicon-eye-close text-danger' aria-hidden='true'></span>";
                         }
+                    }},
+                {data: "producto_destacado", visible: true, title: "Destacado", sClass: "text-center", render: function (data, type, full, meta) {
+                        if (data == 1) {
+                            return "<span style='font-size: 16px' class='glyphicon glyphicon-star text-warning' aria-hidden='true'></span>";
+                        } else {
+                            return "<span style='font-size: 16px' class='glyphicon glyphicon-star-empty text-danger' aria-hidden='true'></span>";
+                        }
                     }}
             ]
         });
@@ -172,7 +202,7 @@
         $('#producto_grupo').autoComplete({
             minChars: 0,
             source: function (term, response) {
-                data = getJson('/easyapp/admin/producto/producto_grupo', {dato: term});
+                data = getJson('/easyapp/admin/producto/producto_grupo', {dato: term, producto_categoria: $("#producto_categoria").val()});
                 response(data);
             },
             renderItem: function (item, search) {

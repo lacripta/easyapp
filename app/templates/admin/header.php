@@ -4,7 +4,7 @@
 
         <!-- Site meta -->
         <meta charset="utf-8">
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                                               ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                                                ?></title>
 
         <!-- CSS -->
         <?php
@@ -69,6 +69,7 @@
             'https://cdn.datatables.net/s/dt/dt-1.10.10,af-2.1.0,r-2.0.0,sc-1.4.0,se-1.1.0/datatables.min.js',
             '//cdn.tinymce.com/4/tinymce.min.js',
             helpers\url::admin_template_path() . 'js/jquery.auto-complete.min.js',
+            helpers\url::admin_template_path() . 'js/repeatable.js',
             helpers\url::admin_template_path() . 'js/tinymce/langs/es.js',
             helpers\url::admin_template_path() . 'js/accounting.min.js',
             helpers\url::admin_template_path() . 'js/jquery.filter_input.js',

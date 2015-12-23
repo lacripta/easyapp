@@ -57,6 +57,12 @@ class Producto extends \core\Controller
         $this->archivo["publicar"]["componente_nombre"] = "Publicar producto";
         $this->archivo["publicar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["publicar"]["componente_nombre"]);
 
+        $this->archivo["destacar"]["componente_archivo"] = $this->archivoNombre;
+        $this->archivo["destacar"]["componente_enlace"] = ADMIN . "elemento_destacar";
+        $this->archivo["destacar"]["componente_url"] = DIR . ADMIN . "producto/elemento_destacar";
+        $this->archivo["destacar"]["componente_nombre"] = "Destacar producto";
+        $this->archivo["destacar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["destacar"]["componente_nombre"]);
+
         $this->archivo["grupo"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["grupo"]["componente_enlace"] = ADMIN . "producto_grupo";
         $this->archivo["grupo"]["componente_url"] = DIR . ADMIN . "producto/producto_grupo";
@@ -94,7 +100,7 @@ class Producto extends \core\Controller
 
     public function producto_grupo()
     {
-        echo $this->model->producto_grupo(filter_input(INPUT_POST, "dato"));
+        echo $this->model->producto_grupo(filter_input(INPUT_POST, "dato"), filter_input(INPUT_POST, "producto_categoria"));
     }
 
     public function producto_categoria()
@@ -109,6 +115,7 @@ class Producto extends \core\Controller
         $producto_existencias = filter_input(INPUT_POST, "producto_existencias");
         $producto_grupo = filter_input(INPUT_POST, "producto_grupo");
         $producto_nombre = filter_input(INPUT_POST, "producto_nombre");
+        $producto_resumen = filter_input(INPUT_POST, "producto_resumen");
         $producto_precio = filter_input(INPUT_POST, "producto_precio");
 
         if ($producto_categoria != "" && $producto_descripcion != "" && $producto_existencias != "" && $producto_grupo != "" && $producto_nombre != "" && $producto_precio != "")
@@ -119,6 +126,7 @@ class Producto extends \core\Controller
                 "producto_existencias" => $producto_existencias,
                 "producto_grupo" => $producto_grupo,
                 "producto_nombre" => $producto_nombre,
+                "producto_resumen" => $producto_resumen,
                 "producto_precio" => $producto_precio
             ];
             echo $this->model->producto_nuevo($datos);
@@ -132,6 +140,7 @@ class Producto extends \core\Controller
         $producto_existencias = filter_input(INPUT_POST, "producto_existencias");
         $producto_grupo = filter_input(INPUT_POST, "producto_grupo");
         $producto_nombre = filter_input(INPUT_POST, "producto_nombre");
+        $producto_resumen = filter_input(INPUT_POST, "producto_resumen");
         $producto_precio = filter_input(INPUT_POST, "producto_precio");
 
         if ($producto_categoria != "" && $producto_descripcion != "" && $producto_existencias != "" && $producto_grupo != "" && $producto_nombre != "" && $producto_precio != "")
@@ -142,6 +151,7 @@ class Producto extends \core\Controller
                 "producto_existencias" => $producto_existencias,
                 "producto_grupo" => $producto_grupo,
                 "producto_nombre" => $producto_nombre,
+                "producto_resumen" => $producto_resumen,
                 "producto_precio" => $producto_precio
             ];
 //print_r($datos);
@@ -160,6 +170,13 @@ class Producto extends \core\Controller
         $producto_estado = filter_input(INPUT_POST, "producto_estado") == "0" ? "1" : "0";
         $update = $this->model->producto_editar(["producto_estado" => $producto_estado], ["producto_id" => filter_input(INPUT_POST, "producto_id")]);
         echo "{\"producto_estado\":\"$producto_estado\", \"update\":\"$update\"}";
+    }
+
+    public function elemento_destacado()
+    {
+        $producto_destacado = filter_input(INPUT_POST, "producto_destacado") == "0" ? "1" : "0";
+        $update = $this->model->producto_editar(["producto_destacado" => $producto_destacado], ["producto_id" => filter_input(INPUT_POST, "producto_id")]);
+        echo "{\"producto_destacado\":\"$producto_destacado\", \"update\":\"$update\"}";
     }
 
 }
