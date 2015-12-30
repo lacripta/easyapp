@@ -79,7 +79,7 @@ class Producto extends \core\Controller
         {
             $this->componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
         }
-        $this->componente->controlAcceso();
+        //$this->componente->controlAcceso();
     }
 
     public function index()
