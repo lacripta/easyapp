@@ -129,8 +129,8 @@ class Menu extends \core\Controller {
                     'menu_orden' => trim($orden),
                     'menu_componente' => trim($comp_id)
                 );
-                $this->_model->crearMenu($menu_datos);
-                Session::set("estado", "Enlace Creado");
+                $id = $this->_model->crearMenu($menu_datos);
+                Session::set("estado", "Enlace Creado, $id");
                 Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }

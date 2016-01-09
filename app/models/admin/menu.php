@@ -21,9 +21,13 @@ order by menu_clase_orden, menu_grupo_orden, menu_orden ", array(':sid' => $sid)
     public function getClases() {
         return $this->_db->select("SELECT * FROM " . PREFIX . "menu_clase ORDER BY menu_clase_orden");
     }
-
+/**
+ * 
+ * @param ARRAY $menu_datos datos a insertar en la tabla menu
+ * @return INT id del registro insertado
+ */
     public function crearMenu($menu_datos) {
-        $this->_db->insert(PREFIX . "menu", $menu_datos);
+        return $this->_db->insert(PREFIX . "menu", $menu_datos);
     }
 
     public function editarMenu($menu_datos, $where) {

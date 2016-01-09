@@ -1,19 +1,15 @@
 <?php
 
-if (file_exists('vendor/autoload.php'))
-{
+if (file_exists('vendor/autoload.php')) {
     require 'vendor/autoload.php';
-}
-else
-{
+} else {
     echo "<h1>Please install via composer.json</h1>";
     echo "<p>Install Composer instructions: <a href='https://getcomposer.org/doc/00-intro.md#globally'>https://getcomposer.org/doc/00-intro.md#globally</a></p>";
     echo "<p>Once composer is installed navigate to the working directory in your terminal/command promt and enter 'composer install'</p>";
     exit;
 }
 
-if (!is_readable('app/core/config.php'))
-{
+if (!is_readable('app/core/config.php')) {
     die('No config.php found, configure and rename config.example.php to config.php in app/core.');
 }
 
@@ -44,11 +40,9 @@ define('ENVIRONMENT', 'development');
  * By default development will show errors but production will hide them.
  */
 
-if (defined('ENVIRONMENT'))
-{
+if (defined('ENVIRONMENT')) {
 
-    switch (ENVIRONMENT)
-    {
+    switch (ENVIRONMENT) {
         case 'development':
             error_reporting(E_ALL);
             break;
@@ -138,8 +132,9 @@ Router::any('admin/producto/imagenes/agregar_imagen', '\controllers\admin\produc
 Router::any('admin/producto/imagenes/imagenes_producto', '\controllers\admin\producto_imagen@imagenes');
 Router::any('admin/producto/imagenes/publicar_imagen', '\controllers\admin\producto_imagen@imagen_publicar');
 Router::any('admin/producto/imagenes/borrar/..(:num)', '\controllers\admin\producto_imagen@imagen_borrar');
-//DATA FEDD DE EASYART
+//DATA FEED DE EASYART
 Router::any('admin/producto/lista', '\controllers\admin\data_feed@productos');
+Router::any('admin/producto/lista_orden', '\controllers\admin\data_feed@productos_ordenados');
 Router::any('admin/producto/categorias', '\controllers\admin\data_feed@categorias');
 Router::any('admin/producto/grupos', '\controllers\admin\data_feed@grupos');
 Router::any('admin/producto/filtro_productos', '\controllers\admin\data_feed@filtro_productos');

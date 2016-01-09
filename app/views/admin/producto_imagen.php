@@ -53,8 +53,7 @@
 </div>
 
 <?php
-foreach ($data["imagenes"] as $imagen)
-{
+foreach ($data["imagenes"] as $imagen) {
     ?>
     <!--<div class="col-xs-3">
         <div class="hovereffect">
@@ -124,6 +123,7 @@ foreach ($data["imagenes"] as $imagen)
         $('#MyUploadForm').submit(function () {
             tinyMCE.triggerSave();
             $(this).ajaxSubmit(options);
+            location.reload();
             return false;
         });
         $("#imageInput").change(function () {

@@ -1,3 +1,117 @@
+<p>Error on Jan 05, 2016 18:50PM - filter_input(): INPUT_SESSION is not yet implemented in C:\wamp\www\easyapp\app\models\admin\componente.php on line 15</p><h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Jan 05, 2016 18:26PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[42S22]: Column not found: 1054 Unknown column 'producto_grupo.producto_categoria_nombre' in 'field list'</p>
+
+		<p><strong>Code:</strong> 42S22</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 116</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(116): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\producto.php(108): helpers\Database->insert('producto', Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\producto.php(132): models\admin\Producto->producto_nuevo(Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Producto->elemento_nuevo()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(161): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Jan 05, 2016 18:24PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[42S22]: Column not found: 1054 Unknown column 'producto_categoria_nombre' in 'field list'</p>
+
+		<p><strong>Code:</strong> 42S22</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 116</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(116): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\producto.php(108): helpers\Database->insert('producto', Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\producto.php(132): models\admin\Producto->producto_nuevo(Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Producto->elemento_nuevo()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(161): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Jan 05, 2016 18:24PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[42S22]: Column not found: 1054 Unknown column 'producto_categoria_nombre' in 'field list'</p>
+
+		<p><strong>Code:</strong> 42S22</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 116</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(116): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\producto.php(108): helpers\Database->insert('producto', Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\producto.php(132): models\admin\Producto->producto_nuevo(Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Producto->elemento_nuevo()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(161): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Jan 05, 2016 17:58PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cambios_saman.gd_grupo' doesn't exist</p>
+
+		<p><strong>Code:</strong> 42S02</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 214</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(214): PDO->exec('INSERT INTO gd_...')
+#1 C:\wamp\www\easyapp\app\controllers\admin\iniciar.php(78): helpers\Database->ejecutar('INSERT INTO gd_...')
+#2 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Iniciar->index()
+#3 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#4 C:\wamp\www\easyapp\index.php(161): core\Router::dispatch()
+#5 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Jan 05, 2016 12:57PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[HY000] [1049] Unknown database 'easyart'</p>
+
+		<p><strong>Code:</strong> 1049</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 57</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(57): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\wamp\www\easyapp\app\core\model.php(25): helpers\Database::get()
+#2 C:\wamp\www\easyapp\app\controllers\inicio.php(16): core\Model->__construct()
+#3 C:\wamp\www\easyapp\app\core\router.php(80): controllers\Inicio->__construct(NULL)
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\in...')
+#5 C:\wamp\www\easyapp\index.php(161): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
 <h3>Exception information:</h3>
 
 		<p><strong>Date:</strong> Dec 29, 2015 21:25PM</p>
