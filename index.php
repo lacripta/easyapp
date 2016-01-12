@@ -149,6 +149,7 @@ Router::any('admin/producto/filtro_productos', '\controllers\admin\data_feed@fil
 Router::any('admin/producto/productos_categoria', '\controllers\admin\data_feed@productos_categoria');
 Router::any('admin/producto/detalles_producto', '\controllers\admin\data_feed@detalles_producto');
 Router::any('admin/producto/carrusel', '\controllers\admin\data_feed@galeria');
+Router::any('admin/novedades/publicas', '\controllers\admin\data_feed@novedades');
 
 
 //if no route found

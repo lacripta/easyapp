@@ -14,6 +14,14 @@ class Novedades extends \core\Model {
     }
 
     /**
+     * metodo de acceso para la presentacion de las novedades en la pagina principal, este metodo filtro las publicaciones de acuerdo a su estado y las organiza por fecha y luego por prioridad que la da el valor destacado
+     * @return JSON lista de elementos visibles de las novedades
+     */
+    public function novedades() {
+        return json_encode($this->_db->select("SELECT * FROM novedades where novedades_estado = 1 order by novedades_fecha, novedades_destacado", []));
+    }
+
+    /**
      *
      * @param ARRAY $menu_datos datos a insertar en la tabla menu
      * @return INT id del registro insertado

@@ -68,6 +68,9 @@ class Novedades extends \core\Controller {
         $this->componente->controlAcceso();
     }
 
+    /**
+     *
+     */
     public function index() {
         $data["title"] = $this->archivo["raiz"]["componente_nombre"];
 
@@ -76,10 +79,16 @@ class Novedades extends \core\Controller {
         View::admintemplate("footer", $data);
     }
 
+    /**
+     *
+     */
     public function elementos() {
         echo json_encode($this->model->getNovedades());
     }
 
+    /**
+     *
+     */
     public function add() {
         $novedades_titulo = filter_input(INPUT_POST, "novedades_titulo");
         $novedades_resumen = filter_input(INPUT_POST, "novedades_resumen");
@@ -105,6 +114,9 @@ class Novedades extends \core\Controller {
         }
     }
 
+    /**
+     *
+     */
     public function edit() {
         $novedades_id = filter_input(INPUT_POST, "novedades_id");
         $novedades_titulo = filter_input(INPUT_POST, "novedades_titulo");
@@ -126,11 +138,17 @@ class Novedades extends \core\Controller {
         }
     }
 
+    /**
+     *
+     */
     public function delete() {
         $novedades_id = filter_input(INPUT_POST, "novedades_id");
         echo $this->model->deleteNovedad(["novedades_id" => $novedades_id]);
     }
 
+    /**
+     *
+     */
     public function publicar() {
         $novedades_id = filter_input(INPUT_POST, "novedades_id");
         $novedades_estado = filter_input(INPUT_POST, "novedades_estado") == "0" ? "1" : "0";
@@ -138,6 +156,9 @@ class Novedades extends \core\Controller {
         echo "{\"novedades_estado\":\"$novedades_estado\", \"update\":\"$update\"}";
     }
 
+    /**
+     *
+     */
     public function destacar() {
         $novedades_destacado = filter_input(INPUT_POST, "novedades_destacado") == "0" ? "1" : "0";
         $update = $this->model->editNovedad(["novedades_destacado" => $novedades_destacado], ["novedades_id" => filter_input(INPUT_POST, "novedades_id")]);
