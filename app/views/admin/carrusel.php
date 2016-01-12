@@ -35,12 +35,6 @@
                             <div class="form-group">
                                 <input type="text" class="form-control floating-label" placeholder="Nombre del banner" name="galeria_nombre" id="galeria_nombre">
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control floating-label" placeholder="Titulo del Banner" name="galeria_titulo" id="galeria_titulo">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control floating-label" placeholder="Descripcion del contenido" name="galeria_descripcion" id="galeria_descripcion">
-                            </div>
                             <input type="submit" id="submit-btn" class="btn btn-info" value="Guardar" onclick="$('#jcartModal').modal('hide');">
                             <input type="hidden" id="galeria_id" name="galeria_id" value="">
                             <input type="hidden" id="galeria_estado" name="galeria_estado" value="">

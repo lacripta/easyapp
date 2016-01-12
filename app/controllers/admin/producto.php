@@ -5,16 +5,14 @@ namespace controllers\admin;
 use \helpers\Url,
     \core\View;
 
-class Producto extends \core\Controller
-{
+class Producto extends \core\Controller {
 
     private $componente;
     private $archivoNombre;
     private $model;
     private $archivo;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->componente = new \models\admin\Componente();
         $this->model = new \models\admin\Producto();
 
@@ -75,15 +73,13 @@ class Producto extends \core\Controller
         $this->archivo["categoria"]["componente_nombre"] = "Categorias de producto";
         $this->archivo["categoria"]["componente_slug"] = Url::generateSafeSlug($this->archivo["categoria"]["componente_nombre"]);
 
-        foreach ($this->archivo as $componente)
-        {
+        foreach ($this->archivo as $componente) {
             $this->componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
         }
-        //$this->componente->controlAcceso();
+        $this->componente->controlAcceso();
     }
 
-    public function index()
-    {
+    public function index() {
         $data["title"] = $this->archivo["raiz"]["componente_nombre"];
         $data["usuarios"] = $this->componente->getEnlace("admin/usuario");
         $data["articulos"] = $this->componente->getEnlace("admin/articulo");
@@ -93,23 +89,19 @@ class Producto extends \core\Controller
         View::admintemplate("footer", $data);
     }
 
-    public function elementos()
-    {
+    public function elementos() {
         echo $this->model->productos();
     }
 
-    public function producto_grupo()
-    {
+    public function producto_grupo() {
         echo $this->model->producto_grupo(filter_input(INPUT_POST, "dato"), filter_input(INPUT_POST, "producto_categoria"));
     }
 
-    public function producto_categoria()
-    {
+    public function producto_categoria() {
         echo $this->model->producto_categoria(filter_input(INPUT_POST, "dato"));
     }
 
-    public function elemento_nuevo()
-    {
+    public function elemento_nuevo() {
         $producto_categoria = filter_input(INPUT_POST, "producto_categoria");
         $producto_descripcion = filter_input(INPUT_POST, "producto_descripcion");
         $producto_existencias = filter_input(INPUT_POST, "producto_existencias");
@@ -118,8 +110,7 @@ class Producto extends \core\Controller
         $producto_resumen = filter_input(INPUT_POST, "producto_resumen");
         $producto_precio = filter_input(INPUT_POST, "producto_precio");
 
-        if ($producto_categoria != "" && $producto_descripcion != "" && $producto_existencias != "" && $producto_grupo != "" && $producto_nombre != "" && $producto_precio != "")
-        {
+        if ($producto_categoria != "" && $producto_descripcion != "" && $producto_existencias != "" && $producto_grupo != "" && $producto_nombre != "" && $producto_precio != "") {
             $datos = [
                 "producto_categoria" => $producto_categoria,
                 "producto_descripcion" => $producto_descripcion,
@@ -133,8 +124,7 @@ class Producto extends \core\Controller
         }
     }
 
-    public function elemento_editar()
-    {
+    public function elemento_editar() {
         $producto_categoria = filter_input(INPUT_POST, "producto_categoria");
         $producto_descripcion = filter_input(INPUT_POST, "producto_descripcion");
         $producto_existencias = filter_input(INPUT_POST, "producto_existencias");
@@ -143,8 +133,7 @@ class Producto extends \core\Controller
         $producto_resumen = filter_input(INPUT_POST, "producto_resumen");
         $producto_precio = filter_input(INPUT_POST, "producto_precio");
 
-        if ($producto_categoria != "" && $producto_descripcion != "" && $producto_existencias != "" && $producto_grupo != "" && $producto_nombre != "" && $producto_precio != "")
-        {
+        if ($producto_categoria != "" && $producto_descripcion != "" && $producto_existencias != "" && $producto_grupo != "" && $producto_nombre != "" && $producto_precio != "") {
             $datos = [
                 "producto_categoria" => $producto_categoria,
                 "producto_descripcion" => $producto_descripcion,
@@ -160,20 +149,17 @@ class Producto extends \core\Controller
         }
     }
 
-    public function elemento_borrar()
-    {
+    public function elemento_borrar() {
         echo $this->model->producto_borrar(["producto_id" => filter_input(INPUT_POST, "producto_id")]);
     }
 
-    public function elemento_publicar()
-    {
+    public function elemento_publicar() {
         $producto_estado = filter_input(INPUT_POST, "producto_estado") == "0" ? "1" : "0";
         $update = $this->model->producto_editar(["producto_estado" => $producto_estado], ["producto_id" => filter_input(INPUT_POST, "producto_id")]);
         echo "{\"producto_estado\":\"$producto_estado\", \"update\":\"$update\"}";
     }
 
-    public function elemento_destacado()
-    {
+    public function elemento_destacado() {
         $producto_destacado = filter_input(INPUT_POST, "producto_destacado") == "0" ? "1" : "0";
         $update = $this->model->producto_editar(["producto_destacado" => $producto_destacado], ["producto_id" => filter_input(INPUT_POST, "producto_id")]);
         echo "{\"producto_destacado\":\"$producto_destacado\", \"update\":\"$update\"}";

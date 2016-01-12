@@ -1,3 +1,26 @@
+<h3>Exception information:</h3>
+
+		<p><strong>Date:</strong> Jan 12, 2016 13:36PM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'novedades_autor' cannot be null</p>
+
+		<p><strong>Code:</strong> 23000</p>
+
+		<p><strong>File:</strong> C:\wamp\www\easyapp\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 116</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\wamp\www\easyapp\app\helpers\database.php(116): PDOStatement->execute()
+#1 C:\wamp\www\easyapp\app\models\admin\novedades.php(22): helpers\Database->insert('novedades', Array)
+#2 C:\wamp\www\easyapp\app\controllers\admin\novedades.php(103): models\admin\Novedades->addNovedad(Array)
+#3 C:\wamp\www\easyapp\app\core\router.php(85): controllers\admin\Novedades->add()
+#4 C:\wamp\www\easyapp\app\core\router.php(179): core\Router::invokeObject('\\controllers\\ad...')
+#5 C:\wamp\www\easyapp\index.php(164): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
 <p>Error on Jan 05, 2016 18:50PM - filter_input(): INPUT_SESSION is not yet implemented in C:\wamp\www\easyapp\app\models\admin\componente.php on line 15</p><h3>Exception information:</h3>
 
 		<p><strong>Date:</strong> Jan 05, 2016 18:26PM</p>

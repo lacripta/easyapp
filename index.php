@@ -132,6 +132,14 @@ Router::any('admin/producto/imagenes/agregar_imagen', '\controllers\admin\produc
 Router::any('admin/producto/imagenes/imagenes_producto', '\controllers\admin\producto_imagen@imagenes');
 Router::any('admin/producto/imagenes/publicar_imagen', '\controllers\admin\producto_imagen@imagen_publicar');
 Router::any('admin/producto/imagenes/borrar/..(:num)', '\controllers\admin\producto_imagen@imagen_borrar');
+//administrador de novedades
+Router::any('admin/novedades', '\controllers\admin\novedades@index');
+Router::any('admin/novedades/elementos', '\controllers\admin\novedades@elementos');
+Router::any('admin/novedades/elemento_nuevo', '\controllers\admin\novedades@add');
+Router::any('admin/novedades/elemento_editar', '\controllers\admin\novedades@edit');
+Router::any('admin/novedades/elemento_publicar', '\controllers\admin\novedades@publicar');
+Router::any('admin/novedades/elemento_destacar', '\controllers\admin\novedades@destacar');
+Router::any('admin/novedades/elemento_borrar', '\controllers\admin\novedades@delete');
 //DATA FEED DE EASYART
 Router::any('admin/producto/lista', '\controllers\admin\data_feed@productos');
 Router::any('admin/producto/lista_orden', '\controllers\admin\data_feed@productos_ordenados');

@@ -5,16 +5,14 @@ namespace controllers\admin;
 use \helpers\Url,
     \core\View;
 
-class Producto_Imagen extends \core\Controller
-{
+class Producto_Imagen extends \core\Controller {
 
     private $componente;
     private $archivoNombre;
     private $model;
     private $archivo;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->componente = new \models\admin\Componente();
         $this->model = new \models\admin\Producto_Imagen();
 
@@ -50,15 +48,13 @@ class Producto_Imagen extends \core\Controller
         $this->archivo["publicar"]["componente_url"] = DIR . ADMIN . "producto/imagenes/publicar_imagen";
         $this->archivo["publicar"]["componente_nombre"] = "publicar imagen del producto";
 
-        foreach ($this->archivo as $componente)
-        {
+        foreach ($this->archivo as $componente) {
             $this->componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
         }
         $this->componente->controlAcceso();
     }
 
-    public function index($id)
-    {
+    public function index($id) {
         $data["title"] = $this->archivo["raiz"]["componente_nombre"];
         $data["inicio"] = $this->componente->getEnlace("admin/inicio");
         $data["producto"] = $this->componente->getEnlace("admin/producto");
@@ -70,14 +66,12 @@ class Producto_Imagen extends \core\Controller
         View::admintemplate("footer", $data);
     }
 
-    public function agregar_imagen()
-    {
+    public function agregar_imagen() {
         $producto_imagen_nombre = filter_input(INPUT_POST, "producto_imagen_nombre");
-        $producto_imagen_titulo = filter_input(INPUT_POST, "producto_imagen_titulo");
-        $producto_imagen_descripcion = filter_input(INPUT_POST, "producto_imagen_descripcion");
+        $producto_imagen_titulo = filter_input(INPUT_POST, "producto_imagen_nombre");
+        $producto_imagen_descripcion = filter_input(INPUT_POST, "producto_imagen_nombre");
         $producto_url = $this->componente->subir_imagen("image_file", "productos");
-        if ($producto_imagen_nombre != "" && $producto_imagen_titulo != "" && $producto_imagen_descripcion != "" && $producto_url["estado"])
-        {
+        if ($producto_imagen_nombre != "" && $producto_imagen_titulo != "" && $producto_imagen_descripcion != "" && $producto_url["estado"]) {
             $datos = [
                 "producto_imagen_nombre" => $producto_imagen_nombre,
                 "producto_imagen_producto" => filter_input(INPUT_POST, "producto_imagen_producto"),
@@ -89,18 +83,15 @@ class Producto_Imagen extends \core\Controller
         }
     }
 
-    public function imagenes()
-    {
+    public function imagenes() {
         echo json_encode($this->model->imagenes(filter_input(INPUT_POST, "producto_id")));
     }
 
-    public function imagen_borrar($id)
-    {
+    public function imagen_borrar($id) {
         echo $this->model->borrar_imagen(["producto_imagen_id" => $id]);
     }
 
-    public function imagen_publicar()
-    {
+    public function imagen_publicar() {
         echo $this->model->imagen_editar(["producto_imagen_estado" => filter_input(INPUT_POST, "producto_imagen_estado") == "0" ? "1" : "0"], ["producto_imagen_id" => filter_input(INPUT_POST, "producto_imagen_id")]);
     }
 

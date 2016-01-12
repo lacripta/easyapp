@@ -5,16 +5,14 @@ namespace controllers\admin;
 use \helpers\Url,
     \core\View;
 
-class Carrusel extends \core\Controller
-{
+class Carrusel extends \core\Controller {
 
     private $componente;
     private $archivoNombre;
     private $model;
     private $archivo;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->componente = new \models\admin\Componente();
         $this->model = new \models\admin\Carrusel();
 
@@ -57,15 +55,13 @@ class Carrusel extends \core\Controller
         $this->archivo["publicar"]["componente_nombre"] = "Publicar elemento al carrusel";
         $this->archivo["publicar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["publicar"]["componente_nombre"]);
 
-        foreach ($this->archivo as $componente)
-        {
+        foreach ($this->archivo as $componente) {
             $this->componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
         }
-        //$this->componente->controlAcceso();
+        $this->componente->controlAcceso();
     }
 
-    public function index()
-    {
+    public function index() {
         $data["title"] = $this->archivo["raiz"]["componente_nombre"];
         $data["usuarios"] = $this->componente->getEnlace("admin/usuario");
         $data["articulos"] = $this->componente->getEnlace("admin/articulo");
@@ -75,20 +71,17 @@ class Carrusel extends \core\Controller
         View::admintemplate("footer", $data);
     }
 
-    public function elementos()
-    {
+    public function elementos() {
         echo $this->model->elementos();
     }
 
-    public function elemento_nuevo()
-    {
-        $galeria_descripcion = filter_input(INPUT_POST, "galeria_descripcion");
-        $galeria_titulo = filter_input(INPUT_POST, "galeria_titulo");
+    public function elemento_nuevo() {
+        $galeria_descripcion = filter_input(INPUT_POST, "galeria_nombre");
+        $galeria_titulo = filter_input(INPUT_POST, "galeria_nombre");
         $galeria_nombre = filter_input(INPUT_POST, "galeria_nombre");
         $galeria_url = $this->componente->subir_imagen("image_file", "carrusel");
         //echo $galeria_descripcion . $galeria_titulo . $galeria_nombre . $galeria_url["estado"];
-        if ($galeria_descripcion != "" && $galeria_titulo != "" && $galeria_nombre != "" && $galeria_url["estado"])
-        {
+        if ($galeria_descripcion != "" && $galeria_titulo != "" && $galeria_nombre != "" && $galeria_url["estado"]) {
             $datos = [
                 "galeria_descripcion" => $galeria_descripcion,
                 "galeria_titulo" => $galeria_titulo,
@@ -99,23 +92,20 @@ class Carrusel extends \core\Controller
         }
     }
 
-    public function elemento_editar()
-    {
+    public function elemento_editar() {
         $galeria_id = filter_input(INPUT_POST, "galeria_id");
-        $galeria_descripcion = filter_input(INPUT_POST, "galeria_descripcion");
-        $galeria_titulo = filter_input(INPUT_POST, "galeria_titulo");
+        $galeria_descripcion = filter_input(INPUT_POST, "galeria_nombre");
+        $galeria_titulo = filter_input(INPUT_POST, "galeria_nombre");
         $galeria_nombre = filter_input(INPUT_POST, "galeria_nombre");
         $galeria_url = $this->componente->subir_imagen("image_file", "carrusel");
-        if ($galeria_descripcion != "" && $galeria_titulo != "" && $galeria_nombre != "")
-        {
+        if ($galeria_descripcion != "" && $galeria_titulo != "" && $galeria_nombre != "") {
             $datos = [
                 "galeria_descripcion" => $galeria_descripcion,
                 "galeria_titulo" => $galeria_titulo,
                 "galeria_nombre" => $galeria_nombre
             ];
             //echo "estado " . print_r($galeria_url);
-            if ($galeria_url["estado"] == "1")
-            {
+            if ($galeria_url["estado"] == "1") {
                 $datos["galeria_url"] = $galeria_url["url"];
             }
             echo $datos["galeria_url"] . $galeria_id;
@@ -123,14 +113,12 @@ class Carrusel extends \core\Controller
         }
     }
 
-    public function elemento_borrar()
-    {
+    public function elemento_borrar() {
         $galeria_id = filter_input(INPUT_POST, "galeria_id");
         echo $this->model->elemento_borrar(["galeria_id" => $galeria_id]);
     }
 
-    public function elemento_publicar()
-    {
+    public function elemento_publicar() {
         $galeria_id = filter_input(INPUT_POST, "galeria_id");
         $galeria_estado = filter_input(INPUT_POST, "galeria_estado") == "0" ? "1" : "0";
         $update = $this->model->elemento_editar(["galeria_estado" => $galeria_estado], ["galeria_id" => $galeria_id]);

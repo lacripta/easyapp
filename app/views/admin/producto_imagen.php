@@ -34,12 +34,6 @@
             <div class="form-group">
                 <input type="text" class="form-control floating-label" placeholder="Nombre" name="producto_imagen_nombre" id="producto_imagen_nombre">
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control floating-label" placeholder="Titulo" name="producto_imagen_descripcion" id="producto_imagen_descripcion">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control floating-label" placeholder="Descripcion" name="producto_imagen_titulo" id="producto_imagen_titulo">
-            </div>
             <input type="submit" id="submit-btn" class="btn btn-info" value="Guardar" onclick="$('#jcartModal').modal('hide');">
             <input type="hidden" id="producto_imagen_id" name="producto_imagen_id" value="" >
             <input type="hidden" id="producto_imagen_id" name="producto_imagen_producto" value="<?php echo $data["elemento"]->producto_id; ?>">
