@@ -13,13 +13,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="jcartModalLabel">Nuevo Elemento a la Galeria</h4>
+                <h4 class="modal-title" id="jcartModalLabel">Nuevo Elemento a la Galer&iacute;a</h4>
             </div>
             <div class="modal-body">
                 <div class="well col-sm-12">
                     <div align="center">
-                        <h3 id="FormTitulo">Informacion de la imagen para el Carrusel</h3>
-                        <div class="label label-default">Formatos Permitidos: Jpeg, Jpg, Png, Gif. | Tamaño maximo 1 MB</div>
+                        <h3 id="FormTitulo">Informaci&oacute;n de la &iacute;magen para el Carrusel</h3>
+                        <div class="label label-default">Formatos Permitidos: Jpeg, Jpg, Png, Gif. | Tama&ntilde;o maximo 1 MB</div>
                         <form action="/easyapp/admin/carrusel/elemento_nuevo" onsubmit="return false" method="post" enctype="multipart/form-data" id="MyUploadForm">
                             <input name="image_file" id="imageInput" type="file">
                             <img src="" class="img-responsive img-thumbnail" id="loading-img">

@@ -4,7 +4,7 @@
 
         <!-- Site meta -->
         <meta charset="utf-8">
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                                                ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                                                 ?></title>
 
         <!-- CSS -->
         <?php
@@ -12,33 +12,24 @@
         $dropdowns;
         $elementos = array();
         $grupo = "";
-        if (null != \helpers\Session::get("usuario"))
-        {
-            foreach ($menu->getMenus(\helpers\Session::get("usuario")) as $header)
-            {
-                if ($grupo == "")
-                {
+        if (null != \helpers\Session::get("usuario")) {
+            foreach ($menu->getMenus(\helpers\Session::get("usuario")) as $header) {
+                if ($grupo == "") {
                     $grupo = $header->menu_grupo;
                     $elementos["$header->menu_clase"] .= "<li><a href='$header->menu_enlace'>$header->menu_titulo</a></li>";
                     //echo "blanco:$header->menu_clase: <li><a href='$header->menu_enlace'>$header->menu_titulo</a></li>";
-                }
-                else if ($grupo != $header->menu_grupo)
-                {
+                } else if ($grupo != $header->menu_grupo) {
                     $grupo = $header->menu_grupo;
                     //echo "distinto:$header->menu_clase: <li><a href='$header->menu_enlace'>$header->menu_titulo</a></li>";
                     $elementos["$header->menu_clase"] .= "<li class='divider'></li>";
                     $elementos["$header->menu_clase"] .= "<li><a href='$header->menu_enlace'>$header->menu_titulo</a></li>";
-                }
-                else if (($grupo == $header->menu_grupo))
-                {
+                } else if (($grupo == $header->menu_grupo)) {
                     //echo "igual:$header->menu_clase: <li><a href='$header->menu_enlace'>$header->menu_titulo</a></li>";
                     $elementos["$header->menu_clase"] .= "<li><a href='$header->menu_enlace'>$header->menu_titulo</a></li>";
                 }
             }
-            foreach ($menu->getClases() as $menu)
-            {
-                if (array_key_exists($menu->menu_clase_nombre, $elementos) && count($elementos["$menu->menu_clase_nombre"]) > 0)
-                {
+            foreach ($menu->getClases() as $menu) {
+                if (array_key_exists($menu->menu_clase_nombre, $elementos) && count($elementos["$menu->menu_clase_nombre"]) > 0) {
                     $dropdowns .= "<li class='dropdown'>"
                             . "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>"
                             . "$menu->menu_clase_nombre"
@@ -69,7 +60,8 @@
             'https://cdn.datatables.net/s/dt/dt-1.10.10,af-2.1.0,r-2.0.0,sc-1.4.0,se-1.1.0/datatables.min.js',
             '//cdn.tinymce.com/4/tinymce.min.js',
             helpers\url::admin_template_path() . 'js/jquery.auto-complete.min.js',
-            helpers\url::admin_template_path() . 'js/repeatable.js',
+            helpers\url::admin_template_path() . 'js/jscolor.js',
+            helpers\url::admin_template_path() . 'js/tinymce/langs/es.js',
             helpers\url::admin_template_path() . 'js/tinymce/langs/es.js',
             helpers\url::admin_template_path() . 'js/accounting.min.js',
             helpers\url::admin_template_path() . 'js/jquery.filter_input.js',
@@ -98,15 +90,14 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="elementos-menu">
                         <ul class="nav navbar-nav">
-                            <?php echo $dropdowns; ?>
+<?php echo $dropdowns; ?>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <?php
-                            if (null != \helpers\Session::get("usuario"))
-                            {
-                                echo "<li><a href=\"" . DIR . ADMINLOGOUT . "\">Cerrar Sesion</a></li>";
-                            }
-                            ?>
+<?php
+if (null != \helpers\Session::get("usuario")) {
+    echo "<li><a href=\"" . DIR . ADMINLOGOUT . "\">Cerrar Sesion</a></li>";
+}
+?>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

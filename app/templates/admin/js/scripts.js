@@ -22,6 +22,7 @@ function readURL(input) {
 
         reader.onload = function (e) {
             $('#loading-img').attr('src', e.target.result);
+            $("body").css('background-image', 'url(' + e.target.result + ')');
         };
 
         reader.readAsDataURL(input.files[0]);

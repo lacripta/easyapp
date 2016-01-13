@@ -140,6 +140,10 @@ Router::any('admin/novedades/elemento_editar', '\controllers\admin\novedades@edi
 Router::any('admin/novedades/elemento_publicar', '\controllers\admin\novedades@publicar');
 Router::any('admin/novedades/elemento_destacar', '\controllers\admin\novedades@destacar');
 Router::any('admin/novedades/elemento_borrar', '\controllers\admin\novedades@delete');
+//estilos de la pagina principal
+Router::any('admin/estilos', '\controllers\admin\estilos@index');
+Router::any('admin/estilos/cambiar', '\controllers\admin\estilos@cambiar');
+
 //DATA FEED DE EASYART
 Router::any('admin/producto/lista', '\controllers\admin\data_feed@productos');
 Router::any('admin/producto/lista_orden', '\controllers\admin\data_feed@productos_ordenados');
@@ -150,6 +154,7 @@ Router::any('admin/producto/productos_categoria', '\controllers\admin\data_feed@
 Router::any('admin/producto/detalles_producto', '\controllers\admin\data_feed@detalles_producto');
 Router::any('admin/producto/carrusel', '\controllers\admin\data_feed@galeria');
 Router::any('admin/novedades/publicas', '\controllers\admin\data_feed@novedades');
+Router::any('admin/estilos/actual', '\controllers\admin\data_feed@estilos');
 
 
 //if no route found

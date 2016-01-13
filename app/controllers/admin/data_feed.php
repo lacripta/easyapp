@@ -12,6 +12,7 @@ class Data_Feed extends \core\Controller {
     private $carrusel;
     private $producto;
     private $novedades;
+    private $estilos;
     private $producto_imagen;
 
     public function __construct() {
@@ -19,6 +20,7 @@ class Data_Feed extends \core\Controller {
         $this->carrusel = new \models\admin\Carrusel();
         $this->producto = new \models\admin\Producto();
         $this->novedades = new \models\admin\Novedades();
+        $this->estilos = new \models\admin\Estilos();
         $this->producto_imagen = new \models\admin\Producto_Imagen();
     }
 
@@ -59,6 +61,10 @@ class Data_Feed extends \core\Controller {
 
     public function novedades() {
         echo $this->novedades->novedades();
+    }
+
+    public function estilos() {
+        echo $this->estilos->actuales();
     }
 
 }
