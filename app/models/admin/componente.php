@@ -6,7 +6,7 @@ use \helpers\session,
     \helpers\url,
     \core\view;
 
-class Componente extends \core\Model {
+class Componente extends \core\model {
 
     public function controlAcceso() {
         if (!session::get("autenticado")) {

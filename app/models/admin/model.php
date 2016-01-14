@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Model extends \core\Model {
+class Model extends \core\model {
 
     /**
      *

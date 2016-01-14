@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Producto_Imagen extends \core\Model
+class Producto_Imagen extends \core\model
 {
 
     public function elementos()

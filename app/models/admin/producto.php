@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Producto extends \core\Model {
+class Producto extends \core\model {
 
     /**
      * hace un llamado a un selet de todos los elementos de la tabla de productos

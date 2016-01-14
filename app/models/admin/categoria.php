@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Categoria extends \core\Model {
+class Categoria extends \core\model {
 
     public function getCategorias() {
         return $this->_db->select("SELECT * FROM " . PREFIX . "documento_tipo;");

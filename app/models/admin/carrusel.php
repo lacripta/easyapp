@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Carrusel extends \core\Model
+class Carrusel extends \core\model
 {
 
     public function elementos()

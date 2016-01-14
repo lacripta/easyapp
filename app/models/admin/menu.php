@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Menu extends \core\Model {
+class Menu extends \core\model {
 
     /**
      * metodo utilizado para obtener los permisos de cada usuario registrado

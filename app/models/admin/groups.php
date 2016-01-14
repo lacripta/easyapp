@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Groups extends \core\Model {
+class Groups extends \core\model {
 
     public function getGrupos() {
         return $this->_db->select("SELECT * FROM " . PREFIX . "grupo ORDER BY grupo_fecha");

@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Usuario extends \core\Model {
+class Usuario extends \core\model {
 
     public function getUsuarios() {
         return $this->_db->select("SELECT * FROM " . PREFIX . "usuario ORDER BY usuario_fecha");

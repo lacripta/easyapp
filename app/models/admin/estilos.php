@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Estilos extends \core\Model {
+class Estilos extends \core\model {
 
     /**
      *

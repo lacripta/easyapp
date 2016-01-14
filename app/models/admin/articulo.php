@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Articulo extends \core\Model {
+class Articulo extends \core\model {
 
     public function getArticulos() {
         return $this->_db->select("SELECT * FROM " . PREFIX . "articulo ORDER BY articulo_fecha");

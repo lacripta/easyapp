@@ -2,7 +2,7 @@
 
 namespace models\admin;
 
-class Novedades extends \core\Model {
+class Novedades extends \core\model {
 
     /**
      *
