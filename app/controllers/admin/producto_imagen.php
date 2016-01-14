@@ -14,7 +14,7 @@ class Producto_Imagen extends \core\controller {
 
     public function __construct() {
         $this->componente = new \models\admin\componente();
-        $this->model = new \models\admin\producto_Imagen();
+        $this->model = new \models\admin\producto_imagen();
 
         $this->clase = "producto_imagen";
         $this->archivoNombre = "producto_imagen.php";

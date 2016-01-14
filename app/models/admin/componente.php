@@ -149,7 +149,7 @@ class Componente extends \core\model {
 
     function subir_imagen($file, $folder) {
         if (isset($_FILES["$file"]) && $_FILES["$file"]["error"] == UPLOAD_ERR_OK) {
-            $UploadDirectory = "C:/wamp/www/easyart/img/$folder/"; //specify upload directory ends with / (slash)
+            $UploadDirectory = "/home/u555867697/public_html/easyart/img/$folder/"; //specify upload directory ends with / (slash)
 
             if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
                 die();

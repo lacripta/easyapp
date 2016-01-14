@@ -21,7 +21,7 @@ class Data_Feed extends \core\controller {
         $this->producto = new \models\admin\producto();
         $this->novedades = new \models\admin\novedades();
         $this->estilos = new \models\admin\estilos();
-        $this->producto_imagen = new \models\admin\producto_Imagen();
+        $this->producto_imagen = new \models\admin\producto_imagen();
     }
 
     public function productos() {
