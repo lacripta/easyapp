@@ -1,4 +1,4 @@
-<?php echo \core\Error::display($error); ?>
+<?php echo \core\error::display($error); ?>
 <div class="well col-xs-12 col-md-5">
     <form class="form-horizontal" action="" method ="post">
         <legend><?php echo $data["title"]; ?></legend>

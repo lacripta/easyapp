@@ -4,11 +4,11 @@
 
         <!-- Site meta -->
         <meta charset="utf-8">
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                                                 ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                                                  ?></title>
 
         <!-- CSS -->
         <?php
-        $menu = new models\admin\Menu();
+        $menu = new models\admin\menu();
         $dropdowns;
         $elementos = array();
         $grupo = "";
@@ -90,14 +90,14 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="elementos-menu">
                         <ul class="nav navbar-nav">
-<?php echo $dropdowns; ?>
+                            <?php echo $dropdowns; ?>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-<?php
-if (null != \helpers\session::get("usuario")) {
-    echo "<li><a href=\"" . DIR . ADMINLOGOUT . "\">Cerrar Sesion</a></li>";
-}
-?>
+                            <?php
+                            if (null != \helpers\session::get("usuario")) {
+                                echo "<li><a href=\"" . DIR . ADMINLOGOUT . "\">Cerrar Sesion</a></li>";
+                            }
+                            ?>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

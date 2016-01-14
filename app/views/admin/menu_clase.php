@@ -1,4 +1,4 @@
-<?php echo \core\Error::display($error); ?>
+<?php echo \core\error::display($error); ?>
 <ol class="breadcrumb">
     <li><a href="<?php echo DIR . ADMIN; ?>">Inicio</a></li>
     <li><a href="<?php echo DIR . $data["raiz"]; ?>">Menus</a></li>

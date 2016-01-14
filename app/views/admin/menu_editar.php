@@ -1,5 +1,5 @@
 <?php
-echo \core\Error::display($error);
+echo \core\error::display($error);
 ?>
 <ol class="breadcrumb">
     <li><a href="<?php echo DIR . ADMIN; ?>">Inicio</a></li>
