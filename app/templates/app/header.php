@@ -12,8 +12,8 @@
         $dropdowns;
         $elementos = array();
         $grupo = "";
-        if (null != \helpers\Session::get("usuario")) {
-            foreach ($menu->getMenus(\helpers\Session::get("usuario")) as $header) {
+        if (null != \helpers\session::get("usuario")) {
+            foreach ($menu->getMenus(\helpers\session::get("usuario")) as $header) {
                 if ($grupo == "") {
                     $grupo = $header->menu_grupo;
                     $elementos["$header->menu_clase"] .= "<li><a href='$header->menu_enlace'>$header->menu_titulo</a></li>";
@@ -75,7 +75,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php
-                            if (null != \helpers\Session::get("usuario")) {
+                            if (null != \helpers\session::get("usuario")) {
                                 echo "<li><a href=\"" . DIR . ADMINLOGOUT . "\">Cerrar Sesion</a></li>";
                             }
                             ?>

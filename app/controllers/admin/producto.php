@@ -2,10 +2,10 @@
 
 namespace controllers\admin;
 
-use \helpers\Url,
-    \core\View;
+use \helpers\url,
+    \core\view;
 
-class Producto extends \core\Controller {
+class Producto extends \core\controller {
 
     private $componente;
     private $archivoNombre;
@@ -13,8 +13,8 @@ class Producto extends \core\Controller {
     private $archivo;
 
     public function __construct() {
-        $this->componente = new \models\admin\Componente();
-        $this->model = new \models\admin\Producto();
+        $this->componente = new \models\admin\componente();
+        $this->model = new \models\admin\producto();
 
         $this->clase = "producto";
         $this->archivoNombre = "producto.php";
@@ -23,55 +23,55 @@ class Producto extends \core\Controller {
         $this->archivo["raiz"]["componente_enlace"] = ADMIN . "producto";
         $this->archivo["raiz"]["componente_url"] = DIR . ADMIN . "producto";
         $this->archivo["raiz"]["componente_nombre"] = "Administrador de Productos";
-        $this->archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
+        $this->archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
 
         $this->archivo["elementos"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["elementos"]["componente_enlace"] = ADMIN . "elementos";
         $this->archivo["elementos"]["componente_url"] = DIR . ADMIN . "producto/elementos";
         $this->archivo["elementos"]["componente_nombre"] = "Lista de productos";
-        $this->archivo["elementos"]["componente_slug"] = Url::generateSafeSlug($this->archivo["elementos"]["componente_nombre"]);
+        $this->archivo["elementos"]["componente_slug"] = url::generateSafeSlug($this->archivo["elementos"]["componente_nombre"]);
 
         $this->archivo["nuevo"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["nuevo"]["componente_enlace"] = ADMIN . "elemento_nuevo";
         $this->archivo["nuevo"]["componente_url"] = DIR . ADMIN . "producto/elemento_nuevo";
         $this->archivo["nuevo"]["componente_nombre"] = "Agregar producto";
-        $this->archivo["nuevo"]["componente_slug"] = Url::generateSafeSlug($this->archivo["nuevo"]["componente_nombre"]);
+        $this->archivo["nuevo"]["componente_slug"] = url::generateSafeSlug($this->archivo["nuevo"]["componente_nombre"]);
 
         $this->archivo["editar"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["editar"]["componente_enlace"] = ADMIN . "elemento_editar";
         $this->archivo["editar"]["componente_url"] = DIR . ADMIN . "producto/elemento_editar";
         $this->archivo["editar"]["componente_nombre"] = "Editar producto";
-        $this->archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["editar"]["componente_nombre"]);
+        $this->archivo["editar"]["componente_slug"] = url::generateSafeSlug($this->archivo["editar"]["componente_nombre"]);
 
         $this->archivo["borrar"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["borrar"]["componente_enlace"] = ADMIN . "elemento_borrar";
         $this->archivo["borrar"]["componente_url"] = DIR . ADMIN . "producto/elemento_borrar";
         $this->archivo["borrar"]["componente_nombre"] = "Borrar producto";
-        $this->archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["borrar"]["componente_nombre"]);
+        $this->archivo["borrar"]["componente_slug"] = url::generateSafeSlug($this->archivo["borrar"]["componente_nombre"]);
 
         $this->archivo["publicar"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["publicar"]["componente_enlace"] = ADMIN . "elemento_publicar";
         $this->archivo["publicar"]["componente_url"] = DIR . ADMIN . "producto/elemento_publicar";
         $this->archivo["publicar"]["componente_nombre"] = "Publicar producto";
-        $this->archivo["publicar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["publicar"]["componente_nombre"]);
+        $this->archivo["publicar"]["componente_slug"] = url::generateSafeSlug($this->archivo["publicar"]["componente_nombre"]);
 
         $this->archivo["destacar"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["destacar"]["componente_enlace"] = ADMIN . "elemento_destacar";
         $this->archivo["destacar"]["componente_url"] = DIR . ADMIN . "producto/elemento_destacar";
         $this->archivo["destacar"]["componente_nombre"] = "Destacar producto";
-        $this->archivo["destacar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["destacar"]["componente_nombre"]);
+        $this->archivo["destacar"]["componente_slug"] = url::generateSafeSlug($this->archivo["destacar"]["componente_nombre"]);
 
         $this->archivo["grupo"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["grupo"]["componente_enlace"] = ADMIN . "producto_grupo";
         $this->archivo["grupo"]["componente_url"] = DIR . ADMIN . "producto/producto_grupo";
         $this->archivo["grupo"]["componente_nombre"] = "Grupos de productos";
-        $this->archivo["grupo"]["componente_slug"] = Url::generateSafeSlug($this->archivo["grupo"]["componente_nombre"]);
+        $this->archivo["grupo"]["componente_slug"] = url::generateSafeSlug($this->archivo["grupo"]["componente_nombre"]);
 
         $this->archivo["categoria"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["categoria"]["componente_enlace"] = ADMIN . "producto_categoria";
         $this->archivo["categoria"]["componente_url"] = DIR . ADMIN . "producto/producto_categoria";
         $this->archivo["categoria"]["componente_nombre"] = "Categorias de producto";
-        $this->archivo["categoria"]["componente_slug"] = Url::generateSafeSlug($this->archivo["categoria"]["componente_nombre"]);
+        $this->archivo["categoria"]["componente_slug"] = url::generateSafeSlug($this->archivo["categoria"]["componente_nombre"]);
 
         foreach ($this->archivo as $componente) {
             $this->componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
@@ -84,9 +84,9 @@ class Producto extends \core\Controller {
         $data["usuarios"] = $this->componente->getEnlace("admin/usuario");
         $data["articulos"] = $this->componente->getEnlace("admin/articulo");
 
-        View::admintemplate("header", $data);
-        View::render($this->archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
     public function elementos() {

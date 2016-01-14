@@ -10,7 +10,7 @@ namespace helpers;
  * @date June 27, 2014
  */
 
-class Url {
+class url {
 
     /**
      * Redirect to chosen url
@@ -31,7 +31,7 @@ class Url {
      * @return string url to template folder
      */
     public static function template_path() {
-        return DIR . 'app/templates/' . Session::get('template') . '/';
+        return DIR . 'app/templates/' . session::get('template') . '/';
     }
 
     public static function admin_template_path() {

@@ -2,11 +2,11 @@
 
 namespace controllers;
 
-use \helpers\Session,
-    \helpers\Url,
-    \core\View;
+use \helpers\session,
+    \helpers\url,
+    \core\view;
 
-class Inicio extends \core\Controller {
+class Inicio extends \core\controller {
 
     private $_componente;
     private $_archivoNombre;
@@ -14,7 +14,7 @@ class Inicio extends \core\Controller {
 
     public function __construct() {
         $this->_model = new \models\admin\auth();
-        $this->_componente = new \models\admin\Componente();
+        $this->_componente = new \models\admin\componente();
 
         $this->clase = "inicio";
         $this->_archivoNombre = "inicio.php";
@@ -22,7 +22,7 @@ class Inicio extends \core\Controller {
         $this->_archivo["raiz"]["componente_enlace"] = "inicio";
         $this->_archivo["raiz"]["componente_url"] = DIR;
         $this->_archivo["raiz"]["componente_nombre"] = "Cambios el Saman";
-        $this->_archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
+        $this->_archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
 
         foreach ($this->_archivo as $componente) {
             $this->_componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
@@ -33,9 +33,9 @@ class Inicio extends \core\Controller {
 
     public function index() {
         $data["title"] = $this->_archivo["raiz"]["componente_nombre"];
-        View::apptemplate("header", $data);
-        View::render($this->_archivo["raiz"]["componente_enlace"], $data);
-        View::apptemplate("footer", $data);
+        view::apptemplate("header", $data);
+        view::render($this->_archivo["raiz"]["componente_enlace"], $data);
+        view::apptemplate("footer", $data);
     }
 
 }

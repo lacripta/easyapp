@@ -2,11 +2,11 @@
 
 namespace controllers\admin;
 
-use helpers\Url,
-    helpers\Session,
-    core\View;
+use helpers\url,
+    \helpers\session,
+    core\view;
 
-class Categoria extends \core\Controller {
+class Categoria extends \core\controller {
 
     private $_model;
     private $_componente;
@@ -15,7 +15,7 @@ class Categoria extends \core\Controller {
     public $clase;
 
     public function __construct() {
-        $this->_componente = new \models\admin\Componente();
+        $this->_componente = new \models\admin\componente();
 
         $this->_model = new \models\admin\categoria();
         $this->clase = "categoria";
@@ -24,25 +24,25 @@ class Categoria extends \core\Controller {
         $this->_archivo["raiz"]["componente_enlace"] = ADMIN . $this->clase;
         $this->_archivo["raiz"]["componente_url"] = DIR . "admin/categoria";
         $this->_archivo["raiz"]["componente_nombre"] = "Gestór de Categorias";
-        $this->_archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
+        $this->_archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
 
         $this->_archivo["crear"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["crear"]["componente_enlace"] = ADMIN . "categoria_crear";
         $this->_archivo["crear"]["componente_url"] = DIR . "admin/categoria/add";
         $this->_archivo["crear"]["componente_nombre"] = "Crear Categoria";
-        $this->_archivo["crear"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
+        $this->_archivo["crear"]["componente_slug"] = url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
 
         $this->_archivo["editar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["editar"]["componente_enlace"] = ADMIN . "categoria_editar";
         $this->_archivo["editar"]["componente_url"] = DIR . "admin/categoria/edit/";
         $this->_archivo["editar"]["componente_nombre"] = "Editar Categoria";
-        $this->_archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
+        $this->_archivo["editar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
 
         $this->_archivo["borrar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["borrar"]["componente_enlace"] = ADMIN . $this->clase . "/delete";
         $this->_archivo["borrar"]["componente_url"] = DIR . "admin/categoria/delete/";
         $this->_archivo["borrar"]["componente_nombre"] = "Eliminar Categoria";
-        $this->_archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
+        $this->_archivo["borrar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
 
         $this->_componente->controlAcceso();
     }
@@ -63,9 +63,9 @@ class Categoria extends \core\Controller {
                     }
                 }
             </script>";
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
     public function add() {
@@ -82,13 +82,13 @@ class Categoria extends \core\Controller {
                     "documento_tipo_nombre" => $nombre
                 );
                 $this->_model->addCategoria($datos_categoria);
-                Session::set("estado", "Se ha creado la categoria");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Se ha creado la categoria");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function edit($id) {
@@ -109,20 +109,20 @@ class Categoria extends \core\Controller {
                 );
                 $where = array("documento_tipo_id" => $id);
                 $this->_model->updateCategoria($datos_categoria, $where);
-                Session::set("estado", "Se ha modificado la categoria");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Se ha modificado la categoria");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function delete($id) {
         $data["title"] = $this->_archivo["borrar"]["componente_nombre"];
         $this->_model->deleteCategoria(array("documento_tipo_id" => $id));
-        Session::set("estado", "Categoria Eliminada");
-        Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+        session::set("estado", "Categoria Eliminada");
+        url::redirect($this->_archivo["raiz"]["componente_enlace"]);
     }
 
 }

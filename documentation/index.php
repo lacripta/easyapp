@@ -93,7 +93,7 @@
                 <li><a href="#s16">Password</a></li>
                 <li><a href="#s17">Pagination</a></li>
                 <li><a href="#s18">Sessions</a></li>
-                <li><a href="#s19">Url</a></li>
+                <li><a href="#s19">url</a></li>
                 <li><a href="#s20">PHPMailer</a></li>
                 <li><a href="#s21">Document</a></li>
                 <li><a href="#s22">Parsedown</a></li>
@@ -322,18 +322,18 @@ define('SESSION_PREFIX','smvc_');
 
                 <p><b>Routing Setup</b></p>
                 <p>Namespace's are included into all classes now, a namespace is kind of like a layer. Adding a namespace to a class means their can be multiple classes with the same name as long as each is in a different namespace.</p>
-                <p>With routes the namespace is \Core\Router:: followed by the method call typing out the namespace every time is long winded, thankfully they shortcuts can be created by creating an alias:
+                <p>With routes the namespace is \Core\router:: followed by the method call typing out the namespace every time is long winded, thankfully they shortcuts can be created by creating an alias:
 
                 <pre><code class="language-php">
-use core\router as Router;
+use core\router as router;
 </code></pre>
 
-                <p>By using the use keyword \core\router can be references as Router.</p>
+                <p>By using the use keyword \core\router can be references as router.</p>
 
                 <p>To define a route call the static name Route:: followed by either a post or get ('any' can also be used to match both post and get requests) to match the HTTP action. Next set the path to match and what do, call a closure or a controller.</p>
 
                 <pre><code class="language-php">
-Router::any('', 'closure or controller');
+router::any('', 'closure or controller');
 </code></pre>
 
                 <p><b>Closures</b></p>
@@ -341,7 +341,7 @@ Router::any('', 'closure or controller');
                 <p>A closure is a function without a name, they are useful when you only need simple logic for a route, to use a closure first call Route:: then set the url pattern you want to match against followed by a function
 
                 <pre><code class="language-php">
-Router::get('simple', function(){
+router::get('simple', function(){
   //do something simple
 });
 </code></pre>
@@ -376,12 +376,12 @@ Route::get('users','\controllers\users@userslist');
                     <p>Routes can respond to both GET and POST requests</p>
                     <p>To use a post route:</p>
                     <pre><code class="language-php">
-Router::post('blogsave', '\controllers\blog@savepost');
+router::post('blogsave', '\controllers\blog@savepost');
 </code></pre>
 
                     <p>To respond to either a post or get request use any:</p>
                     <pre><code class="language-php">
-Router::any('blogsave', '\controllers\blog@savepost');
+router::any('blogsave', '\controllers\blog@savepost');
 </code></pre>
                 </div>
 
@@ -398,7 +398,7 @@ Router::any('blogsave', '\controllers\blog@savepost');
                 <p>To use a filter place the filter inside parenthesis and use a colon inside route path</p>
 
                 <pre><code class="language-php">
-Router::get('blog/(:any)', '\controllers\blog@post');
+router::get('blog/(:any)', '\controllers\blog@post');
 </code></pre>
 
                 Would get past to app/controllers/blog.php anything after blog/ will be passed to post method.
@@ -409,29 +409,29 @@ public function post($slug){
 
                 <p>If there is no route defined, you can call a custom callback, like:
                 <pre><code class="language-php">
-Router::error('\core\error@index');
+router::error('\core\error@index');
 </code></pre>
 
                 <p>Finally to run the routes:</p>
                 <pre><code class="language-php">
-Router::dispatch();
+router::dispatch();
 </code></pre>
 
                 <h1>Full Example</h1>
                 <pre><code class="language-php">
-use core\router as Router;
+use core\router as router;
 
 //define routes
-Router::get('', '\controllers\welcome@index');
+router::get('', '\controllers\welcome@index');
 
 //call a controller in called users inside a admin folder inside the controllers folder
-Router::('admin/users','\controllers\admin\users@list');
+router::('admin/users','\controllers\admin\users@list');
 
 //if no route found
-Router::error('error@index');
+router::error('error@index');
 
 //execute matched routes
-Router::dispatch();
+router::dispatch();
 </code></pre>
 
                 <h1>Legacy Calls</h1>
@@ -494,9 +494,9 @@ class Welcome extends \core\controller{
 
 		$data['title'] = 'Welcome';
 
-		View::rendertemplate('header',$data);
-		View::render('welcome/welcome',$data);
-		View::rendertemplate('footer',$data);
+		view::rendertemplate('header',$data);
+		view::render('welcome/welcome',$data);
+		view::rendertemplate('footer',$data);
 	}
 
 }
@@ -539,7 +539,7 @@ class Blog extends Controller {
 	   $data['title'] = 'Blog';
 	   $data['posts'] = $this->_blog->get_posts();
 
-	  View::render('blog/posts',$data);
+	  view::render('blog/posts',$data);
 
 	}
 
@@ -580,7 +580,7 @@ public function index(){
 	   $this->view->render('welcome/welcome');
 
        //static way
-       View::render('welcome/welcome');
+       view::render('welcome/welcome');
 }
 </code></pre>
 
@@ -594,7 +594,7 @@ $data['title'] = 'My Page Title';
 $data['content'] = 'The contact for the page';
 $data['users'] = array('Dave','Kerry','John');
 
-View::render('contacts',$data);
+view::render('contacts',$data);
 </code></pre>
 
                 <p>Using a model is very similar, an array holds the results from the model, the model calls a method inside the model.</p>
@@ -674,7 +674,7 @@ public function getContacts(){
 
                 <pre><code class="language-php">
 namespace core;
-use helpers\session as Session;
+use \helpers\session as Session;
 
 class View {
 
@@ -683,7 +683,7 @@ class View {
 	}
 
 	public function rendertemplate($path,$data = false){
-		require "app/templates/".Session::get('template')."/$path.php";
+		require "app/templates/".session::get('template')."/$path.php";
 	}
 
 }
@@ -702,9 +702,9 @@ class View {
                 <pre><code class="language-php">
  $data['title'] = 'Welcome';
 
- View::rendertemplate('header',$data);
- View::render('welcome/welcome',$data);
- View::rendertemplate('footer',$data);
+ view::rendertemplate('header',$data);
+ view::render('welcome/welcome',$data);
+ view::rendertemplate('footer',$data);
 </code></pre>
 
                 <p><b>Inside a view</b></p>
@@ -887,9 +887,9 @@ class Welcome extends \core\controller{
 		$data['title'] = 'Welcome';
 		$data['welcome_message'] = $this->language->get('welcome_message');
 
-		View::rendertemplate('header', $data);
-		View::render('welcome/welcome', $data);
-		View::rendertemplate('footer', $data);
+		view::rendertemplate('header', $data);
+		view::render('welcome/welcome', $data);
+		view::rendertemplate('footer', $data);
 	}
 
 }
@@ -1183,7 +1183,7 @@ print_r(\helpers\session::display());
 
             <section id="s19">
                 <div class="page-header">
-                    <h3>Url</h3>
+                    <h3>url</h3>
                     <hr class="notop">
                 </div>
 

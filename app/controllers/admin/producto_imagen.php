@@ -2,10 +2,10 @@
 
 namespace controllers\admin;
 
-use \helpers\Url,
-    \core\View;
+use \helpers\url,
+    \core\view;
 
-class Producto_Imagen extends \core\Controller {
+class Producto_Imagen extends \core\controller {
 
     private $componente;
     private $archivoNombre;
@@ -13,8 +13,8 @@ class Producto_Imagen extends \core\Controller {
     private $archivo;
 
     public function __construct() {
-        $this->componente = new \models\admin\Componente();
-        $this->model = new \models\admin\Producto_Imagen();
+        $this->componente = new \models\admin\componente();
+        $this->model = new \models\admin\producto_Imagen();
 
         $this->clase = "producto_imagen";
         $this->archivoNombre = "producto_imagen.php";
@@ -23,25 +23,25 @@ class Producto_Imagen extends \core\Controller {
         $this->archivo["raiz"]["componente_enlace"] = ADMIN . "producto_imagen";
         $this->archivo["raiz"]["componente_url"] = DIR . ADMIN . "producto/imagenes";
         $this->archivo["raiz"]["componente_nombre"] = "Imagenes del producto";
-        $this->archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
+        $this->archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
 
         $this->archivo["imagenes_producto"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["imagenes_producto"]["componente_enlace"] = ADMIN . "producto/imagenes/imagenes_producto";
         $this->archivo["imagenes_producto"]["componente_url"] = DIR . ADMIN . "producto/imagenes/imagenes_producto";
         $this->archivo["imagenes_producto"]["componente_nombre"] = "Lista de Imagenes del producto";
-        $this->archivo["imagenes_producto"]["componente_slug"] = Url::generateSafeSlug($this->archivo["imagenes_producto"]["componente_nombre"]);
+        $this->archivo["imagenes_producto"]["componente_slug"] = url::generateSafeSlug($this->archivo["imagenes_producto"]["componente_nombre"]);
 
         $this->archivo["nuevo"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["nuevo"]["componente_enlace"] = ADMIN . "producto/imagenes/agregar_imagen";
         $this->archivo["nuevo"]["componente_url"] = DIR . ADMIN . "producto/imagenes/agregar_imagen";
         $this->archivo["nuevo"]["componente_nombre"] = "Agregar imagen del producto";
-        $this->archivo["nuevo"]["componente_slug"] = Url::generateSafeSlug($this->archivo["nuevo"]["componente_nombre"]);
+        $this->archivo["nuevo"]["componente_slug"] = url::generateSafeSlug($this->archivo["nuevo"]["componente_nombre"]);
 
         $this->archivo["borrar"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["borrar"]["componente_enlace"] = ADMIN . "producto/imagenes/borrar_imagen";
         $this->archivo["borrar"]["componente_url"] = DIR . ADMIN . "producto/imagenes/borrar";
         $this->archivo["borrar"]["componente_nombre"] = "Borrar imagen del producto";
-        $this->archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["borrar"]["componente_nombre"]);
+        $this->archivo["borrar"]["componente_slug"] = url::generateSafeSlug($this->archivo["borrar"]["componente_nombre"]);
 
         $this->archivo["publicar"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["publicar"]["componente_enlace"] = ADMIN . "producto/imagenes/publicar_imagen";
@@ -61,9 +61,9 @@ class Producto_Imagen extends \core\Controller {
         $data["elemento"] = $this->model->producto($id)[0];
         $data["imagenes"] = $this->model->imagenes($id);
 
-        View::admintemplate("header", $data);
-        View::render($this->archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
     public function agregar_imagen() {

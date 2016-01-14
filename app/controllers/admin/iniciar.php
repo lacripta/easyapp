@@ -7,7 +7,7 @@ namespace controllers\admin;
  * Each line should be prefixed with  *
  */
 
-class Iniciar extends \core\Controller {
+class Iniciar extends \core\controller {
 
     protected $_db;
 
@@ -37,7 +37,7 @@ class Iniciar extends \core\Controller {
             'usuario_apellido' => 'sistema',
             'usuario_email' => 'administrador@sistema.com',
             'usuario_sid' => $sid,
-            'usuario_clave' => \helpers\Password::make($sid),
+            'usuario_clave' => \helpers\password::make($sid),
             'usuario_estado' => 1,
             'usuario_grupo' => $sid
         );

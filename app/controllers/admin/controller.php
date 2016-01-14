@@ -2,10 +2,10 @@
 
 namespace controllers\admin;
 
-use \helpers\Url,
-    \core\View;
+use \helpers\url,
+    \core\view;
 
-class Controller extends \core\Controller {
+class Controller extends \core\controller {
 
     private $componente;
     private $archivoNombre;
@@ -13,8 +13,8 @@ class Controller extends \core\Controller {
     private $archivo;
 
     public function __construct() {
-        $this->componente = new \models\admin\Componente();
-        $this->model = new \models\admin\Producto();
+        $this->componente = new \models\admin\componente();
+        $this->model = new \models\admin\producto();
 
         $this->clase = "producto";
         $this->archivoNombre = "producto.php";
@@ -23,7 +23,7 @@ class Controller extends \core\Controller {
         $this->archivo["raiz"]["componente_enlace"] = ADMIN . "producto";
         $this->archivo["raiz"]["componente_url"] = DIR . ADMIN . "producto";
         $this->archivo["raiz"]["componente_nombre"] = "Administrador de Productos";
-        $this->archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
+        $this->archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
 
         foreach ($this->archivo as $componente) {
             $this->componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
@@ -36,9 +36,9 @@ class Controller extends \core\Controller {
         $data["usuarios"] = $this->componente->getEnlace("admin/usuario");
         $data["articulos"] = $this->componente->getEnlace("admin/articulo");
 
-        View::admintemplate("header", $data);
-        View::render($this->archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
 }

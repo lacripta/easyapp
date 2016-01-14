@@ -3,7 +3,7 @@
     <li><a href="<?php echo DIR . $data["raiz"]; ?>">Usuarios</a></li>
 </ol>
 <legend><h3><?php echo $data["title"]; ?></h3></legend>
-<?php echo "<h3 class='text-danger'>" . \helpers\Session::pull("estado") . "</h3>"; ?>
+<?php echo "<h3 class='text-danger'>" . \helpers\session::pull("estado") . "</h3>"; ?>
 <a href="<?php echo DIR . $data["raiz"]; ?>/add" class="btn btn-info">Crear Nuevo</a>
 <p><br></p>
 <table class="table table-striped table-hover table-bordered responsive">

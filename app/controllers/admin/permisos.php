@@ -2,11 +2,11 @@
 
 namespace controllers\admin;
 
-use \helpers\Url,
-    core\View,
-    \helpers\Session;
+use \helpers\url,
+    core\view,
+    \helpers\session;
 
-class Permisos extends \core\Controller {
+class Permisos extends \core\controller {
 
     private $_model;
     private $_componente;
@@ -15,7 +15,7 @@ class Permisos extends \core\Controller {
     public $clase_grupo;
 
     public function __construct() {
-        $this->_componente = new \models\admin\Componente();
+        $this->_componente = new \models\admin\componente();
         $this->_model = new \models\admin\grupo();
 
         $this->clase_grupo = "permisos";
@@ -25,25 +25,25 @@ class Permisos extends \core\Controller {
         $this->_archivo["raiz"]["componente_enlace"] = ADMIN . $this->clase_grupo;
         $this->_archivo["raiz"]["componente_url"] = DIR . "admin/permisos";
         $this->_archivo["raiz"]["componente_nombre"] = "Gestor de Permisos";
-        $this->_archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
+        $this->_archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
 
         $this->_archivo["crear"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["crear"]["componente_enlace"] = ADMIN . "permisos_crear";
         $this->_archivo["crear"]["componente_url"] = DIR . "admin/permisos/add";
         $this->_archivo["crear"]["componente_nombre"] = "Agregar Permisos";
-        $this->_archivo["crear"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
+        $this->_archivo["crear"]["componente_slug"] = url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
 
         $this->_archivo["editar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["editar"]["componente_enlace"] = ADMIN . "permisos_editar";
         $this->_archivo["editar"]["componente_url"] = DIR . "admin/permisos/edit/";
         $this->_archivo["editar"]["componente_nombre"] = "Modificar Permisos";
-        $this->_archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
+        $this->_archivo["editar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
 
         $this->_archivo["borrar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["borrar"]["componente_enlace"] = ADMIN . $this->clase_grupo . "/delete";
         $this->_archivo["borrar"]["componente_url"] = DIR . "admin/permisos/delete/";
         $this->_archivo["borrar"]["componente_nombre"] = "Eliminar Permisos";
-        $this->_archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
+        $this->_archivo["borrar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
 
         $this->_componente->controlAcceso();
     }

@@ -2,34 +2,34 @@
 
 namespace models\admin;
 
-use \helpers\Session,
-    \helpers\Url,
-    \core\View;
+use \helpers\session,
+    \helpers\url,
+    \core\view;
 
 class Componente extends \core\Model {
 
     public function controlAcceso() {
-        if (!Session::get("autenticado")) {
-            Url::redirect(ADMINLOGIN);
+        if (!session::get("autenticado")) {
+            url::redirect(ADMINLOGIN);
         }
-        if (!$this->verificarAcceso(Session::get("usuario"), "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'])) {
+        if (!$this->verificarAcceso(session::get("usuario"), "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'])) {
             $data["error"] = "NO TIENE PERMISO PARA ACCEDER A ESTA PAGINA";
-            View::admintemplate('header', $data);
-            View::render('error/404', $data);
-            View::admintemplate('footer', $data);
+            view::admintemplate('header', $data);
+            view::render('error/404', $data);
+            view::admintemplate('footer', $data);
             exit;
         }
     }
 
     public function controlAccesoArchivo() {
-        if (!Session::get("autenticado")) {
-            Url::redirect(ARCHIVOLOGIN);
+        if (!session::get("autenticado")) {
+            url::redirect(ARCHIVOLOGIN);
         }
-        if (!$this->verificarAcceso(Session::get("usuario"), "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'])) {
+        if (!$this->verificarAcceso(session::get("usuario"), "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'])) {
             $data["error"] = "NO TIENE PERMISO PARA ACCEDER A ESTA PAGINA";
-            View::archivotemplate('header', $data);
-            View::render('error/404', $data);
-            View::archivotemplate('footer', $data);
+            view::archivotemplate('header', $data);
+            view::render('error/404', $data);
+            view::archivotemplate('footer', $data);
             exit;
         }
     }

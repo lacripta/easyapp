@@ -2,11 +2,11 @@
 
 namespace controllers\admin;
 
-use \helpers\Url,
-    \helpers\Session,
-    \core\View;
+use \helpers\url,
+    \helpers\session,
+    \core\view;
 
-class Grupo extends \core\Controller {
+class Grupo extends \core\controller {
 
     private $_model;
     private $_componente;
@@ -15,7 +15,7 @@ class Grupo extends \core\Controller {
     public $clase_grupo;
 
     public function __construct() {
-        $this->_componente = new \models\admin\Componente();
+        $this->_componente = new \models\admin\componente();
         $this->_model = new \models\admin\grupo();
         $this->clase_grupo = "grupo";
         $this->_archivoNombre = "grupo.php";
@@ -24,31 +24,31 @@ class Grupo extends \core\Controller {
         $this->_archivo["raiz"]["componente_enlace"] = ADMIN . $this->clase_grupo;
         $this->_archivo["raiz"]["componente_url"] = DIR . "admin/grupo";
         $this->_archivo["raiz"]["componente_nombre"] = "Gestor de Grupos";
-        $this->_archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
+        $this->_archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
 
         $this->_archivo["crear"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["crear"]["componente_enlace"] = ADMIN . "grupo_crear";
         $this->_archivo["crear"]["componente_url"] = $this->_archivo["raiz"]["componente_url"] . "/add";
         $this->_archivo["crear"]["componente_nombre"] = "Agregar Grupo";
-        $this->_archivo["crear"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
+        $this->_archivo["crear"]["componente_slug"] = url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
 
         $this->_archivo["editar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["editar"]["componente_enlace"] = ADMIN . "grupo_editar";
         $this->_archivo["editar"]["componente_url"] = $this->_archivo["raiz"]["componente_url"] . "/edit/";
         $this->_archivo["editar"]["componente_nombre"] = "Modificar Grupo";
-        $this->_archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
+        $this->_archivo["editar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
 
         $this->_archivo["borrar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["borrar"]["componente_enlace"] = ADMIN . $this->clase_grupo . "/delete";
         $this->_archivo["borrar"]["componente_url"] = $this->_archivo["raiz"]["componente_url"] . "/delete/";
         $this->_archivo["borrar"]["componente_nombre"] = "Eliminar Grupo";
-        $this->_archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
+        $this->_archivo["borrar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
 
         $this->_archivo["acceso"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["acceso"]["componente_enlace"] = ADMIN . "grupo_acceso";
         $this->_archivo["acceso"]["componente_url"] = $this->_archivo["raiz"]["componente_url"] . "/acceso/";
         $this->_archivo["acceso"]["componente_nombre"] = "Permisos de Grupo";
-        $this->_archivo["acceso"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["acceso"]["componente_nombre"]);
+        $this->_archivo["acceso"]["componente_slug"] = url::generateSafeSlug($this->_archivo["acceso"]["componente_nombre"]);
 
         $this->_componente->controlAcceso();
     }
@@ -70,9 +70,9 @@ class Grupo extends \core\Controller {
                 }
             </script>";
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
     public function add() {
@@ -98,13 +98,13 @@ class Grupo extends \core\Controller {
                     'grupo_fecha' => $fecha
                 );
                 $this->_model->addGrupo($grupo_datos);
-                Session::set("estado", "Grupo Creado");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Grupo Creado");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function edit($grupo_id) {
@@ -127,13 +127,13 @@ class Grupo extends \core\Controller {
                     "grupo_id" => $grupo_id
                 );
                 $this->_model->updateGrupo($grupo_datos, $where);
-                Session::set("estado", "Grupo Modificado");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Grupo Modificado");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function acceso($grupo_nombre) {
@@ -143,9 +143,9 @@ class Grupo extends \core\Controller {
         $data["grupo"] = $grupo_nombre;
         $data["componentes"] = $this->_componente->permisosComponentes($grupo_nombre);
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["acceso"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["acceso"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function cambiarPermisosGrupo($componente) {
@@ -155,8 +155,8 @@ class Grupo extends \core\Controller {
     public function delete($id) {
         $datos = array("grupo_id" => $id);
         $this->_model->deleteGrupo($datos);
-        Session::set("estado", "Grupo Eliminado");
-        Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+        session::set("estado", "Grupo Eliminado");
+        url::redirect($this->_archivo["raiz"]["componente_enlace"]);
     }
 
     function generaError($error, $mensaje) {

@@ -9,7 +9,7 @@ class Novedades extends \core\Model {
      * @param type $id
      * @return type
      */
-    public function getNovedades() {
+    public function getnovedades() {
         return $this->_db->select("SELECT * FROM novedades", []);
     }
 

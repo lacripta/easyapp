@@ -38,7 +38,7 @@
         <div class="form-group">
             <label for="propietario" class="col-sm-2 control-label">Autor:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="propietario" placeholder="Nombre del Propietario" value="<?php echo \helpers\Session::get("usuario"); ?>" readonly>
+                <input type="text" class="form-control" name="propietario" placeholder="Nombre del Propietario" value="<?php echo \helpers\session::get("usuario"); ?>" readonly>
             </div>
         </div>
         <div class="form-group">

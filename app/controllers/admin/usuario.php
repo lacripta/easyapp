@@ -2,11 +2,11 @@
 
 namespace controllers\admin;
 
-use \helpers\Url,
-    \helpers\Session,
-    \core\View;
+use \helpers\url,
+    \helpers\session,
+    \core\view;
 
-class Usuario extends \core\Controller {
+class Usuario extends \core\controller {
 
     private $_model;
     private $_componente;
@@ -15,7 +15,7 @@ class Usuario extends \core\Controller {
     public $clase;
 
     public function __construct() {
-        $this->_componente = new \models\admin\Componente();
+        $this->_componente = new \models\admin\componente();
         $this->_model = new \models\admin\usuario();
 
         $this->clase = "usuario";
@@ -25,31 +25,31 @@ class Usuario extends \core\Controller {
         $this->_archivo["raiz"]["componente_enlace"] = ADMIN . $this->clase;
         $this->_archivo["raiz"]["componente_url"] = DIR . "admin/usuario";
         $this->_archivo["raiz"]["componente_nombre"] = "Gestor de Usuarios";
-        $this->_archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
+        $this->_archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
 
         $this->_archivo["crear"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["crear"]["componente_enlace"] = ADMIN . "usuario_crear";
         $this->_archivo["crear"]["componente_url"] = DIR . "admin/usuario/add";
         $this->_archivo["crear"]["componente_nombre"] = "Crear Usuario";
-        $this->_archivo["crear"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
+        $this->_archivo["crear"]["componente_slug"] = url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
 
         $this->_archivo["editar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["editar"]["componente_enlace"] = ADMIN . "usuario_editar";
         $this->_archivo["editar"]["componente_url"] = DIR . "admin/usuario/edit/";
         $this->_archivo["editar"]["componente_nombre"] = "Editar Usuario";
-        $this->_archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
+        $this->_archivo["editar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
 
         $this->_archivo["borrar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["borrar"]["componente_enlace"] = ADMIN . $this->clase . "/delete";
         $this->_archivo["borrar"]["componente_url"] = DIR . "admin/usuario/delete/";
         $this->_archivo["borrar"]["componente_nombre"] = "Eliminar Usuario";
-        $this->_archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
+        $this->_archivo["borrar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
 
         $this->_archivo["acceso"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["acceso"]["componente_enlace"] = ADMIN . "usuario_acceso";
         $this->_archivo["acceso"]["componente_url"] = DIR . "admin/usuario/acceso/";
         $this->_archivo["acceso"]["componente_nombre"] = "Permisos de Usuario";
-        $this->_archivo["acceso"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["acceso"]["componente_nombre"]);
+        $this->_archivo["acceso"]["componente_slug"] = url::generateSafeSlug($this->_archivo["acceso"]["componente_nombre"]);
 
         $this->_componente->controlAcceso();
     }
@@ -71,9 +71,9 @@ class Usuario extends \core\Controller {
                 }
             </script>";
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
     public function add() {
@@ -119,20 +119,20 @@ class Usuario extends \core\Controller {
                     'usuario_apellido' => $apellido,
                     'usuario_email' => $email,
                     'usuario_sid' => $usuario,
-                    'usuario_clave' => \helpers\Password::make($clave),
+                    'usuario_clave' => \helpers\password::make($clave),
                     'usuario_estado' => 0,
                     'usuario_grupo' => $grupo
                 );
                 $this->_model->addUsuario($usuario_datos);
                 $this->_componente->crearPermisosUsuario($grupo, $usuario, "PERMITIR");
-                Session::set("estado", "Usuario Creado");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Usuario Creado");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function edit($usuario_id) {
@@ -173,7 +173,7 @@ class Usuario extends \core\Controller {
                     'usuario_grupo' => $grupo
                 );
                 if ($clave != "") {
-                    $usuario_datos["usuario_clave"] = \helpers\Password::make($clave);
+                    $usuario_datos["usuario_clave"] = \helpers\password::make($clave);
                 }
                 $where = array(
                     'usuario_id' => $usuario_id
@@ -184,21 +184,21 @@ class Usuario extends \core\Controller {
                     $this->_componente->borrarPermisosUsuario($usuario);
                 }
                 $this->_model->updateUsuario($usuario_datos, $where);
-                Session::set("estado", "Usuario Actualizado");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Usuario Actualizado");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function delete($id) {
         $datos = array("usuario_id" => $id);
         $this->_model->deleteUsuario($datos);
         $this->_componente->borrarPermisosUsuario($id);
-        Session::set("estado", "Usuario Eliminado");
-        Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+        session::set("estado", "Usuario Eliminado");
+        url::redirect($this->_archivo["raiz"]["componente_enlace"]);
     }
 
     public function acceso($sid, $grupo) {
@@ -209,9 +209,9 @@ class Usuario extends \core\Controller {
         $data["componentes"] = $this->_componente->permisosUsuario($sid);
         $data["sid"] = $sid;
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["acceso"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["acceso"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     function generaError($error, $mensaje) {

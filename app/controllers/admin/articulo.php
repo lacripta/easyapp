@@ -2,11 +2,11 @@
 
 namespace controllers\admin;
 
-use helpers\Url,
-    helpers\Session,
-    core\View;
+use helpers\url,
+    \helpers\session,
+    core\view;
 
-class Articulo extends \core\Controller {
+class Articulo extends \core\controller {
 
     private $_model;
     private $_componente;
@@ -15,7 +15,7 @@ class Articulo extends \core\Controller {
     public $clase;
 
     public function __construct() {
-        $this->_componente = new \models\admin\Componente();
+        $this->_componente = new \models\admin\componente();
         $this->_model = new \models\admin\articulo();
 
         $this->clase = "articulo";
@@ -25,25 +25,25 @@ class Articulo extends \core\Controller {
         $this->_archivo["raiz"]["componente_enlace"] = ADMIN . $this->clase;
         $this->_archivo["raiz"]["componente_url"] = DIR . "admin/articulo";
         $this->_archivo["raiz"]["componente_nombre"] = "Gestor de Articulos";
-        $this->_archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
+        $this->_archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
 
         $this->_archivo["crear"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["crear"]["componente_enlace"] = ADMIN . "articulo_crear";
         $this->_archivo["crear"]["componente_url"] = DIR . "admin/articulo/add";
         $this->_archivo["crear"]["componente_nombre"] = "Agregar Articulo";
-        $this->_archivo["crear"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
+        $this->_archivo["crear"]["componente_slug"] = url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
 
         $this->_archivo["editar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["editar"]["componente_enlace"] = ADMIN . "articulo_editar";
         $this->_archivo["editar"]["componente_url"] = DIR . "admin/articulo/edit/";
         $this->_archivo["editar"]["componente_nombre"] = "Modificar Articulo";
-        $this->_archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
+        $this->_archivo["editar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
 
         $this->_archivo["borrar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["borrar"]["componente_enlace"] = ADMIN . $this->clase . "/delete";
         $this->_archivo["borrar"]["componente_url"] = DIR . "admin/articulo/delete/";
         $this->_archivo["borrar"]["componente_nombre"] = "Eliminar Articulo";
-        $this->_archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
+        $this->_archivo["borrar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
 
         $this->_componente->controlAcceso();
     }
@@ -65,9 +65,9 @@ class Articulo extends \core\Controller {
                 }
             </script>";
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
     public function add() {
@@ -85,7 +85,7 @@ class Articulo extends \core\Controller {
             $fecha = filter_input(INPUT_POST, "fecha");
             $publicado = filter_input(INPUT_POST, "estado") ? 1 : 0;
             $favorito = filter_input(INPUT_POST, "especial") ? 1 : 0;
-            $autor = Session::get("usuario");
+            $autor = session::get("usuario");
             if ($titulo === "") {
                 $error[] = "$publicado";
             }
@@ -96,7 +96,7 @@ class Articulo extends \core\Controller {
                 $error[] = "Tipo de imagen no Soportado.";
             }
             if (!$error) {
-                $slug = Url::generateSafeSlug($titulo);
+                $slug = url::generateSafeSlug($titulo);
                 $articulo_datos = array(
                     'articulo_titulo' => $titulo,
                     'articulo_contenido' => $contenido,
@@ -113,14 +113,14 @@ class Articulo extends \core\Controller {
                     $articulo_datos["articulo_image"] = $file;
                 }
                 $this->_model->addArticulo($articulo_datos);
-                Session::set("estado", "Articulo Creado");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Articulo Creado");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function edit($id) {
@@ -139,7 +139,7 @@ class Articulo extends \core\Controller {
             $fecha = filter_input(INPUT_POST, "fecha");
             $publicado = filter_input(INPUT_POST, "estado") ? 1 : 0;
             $favorito = filter_input(INPUT_POST, "especial") ? 1 : 0;
-            $autor = Session::get("usuario");
+            $autor = session::get("usuario");
             if ($titulo === "") {
                 $error[] = "$publicado";
             }
@@ -153,7 +153,7 @@ class Articulo extends \core\Controller {
                 $error[] = "Archivo de imagen mayor a 500 KB.";
             }
             if (!$error) {
-                $slug = Url::generateSafeSlug($titulo);
+                $slug = url::generateSafeSlug($titulo);
                 $articulo_datos = array(
                     'articulo_titulo' => $titulo,
                     'articulo_contenido' => $contenido,
@@ -173,22 +173,22 @@ class Articulo extends \core\Controller {
                     "articulo_id" => $id
                 );
                 $this->_model->updateArticulo($articulo_datos, $where);
-                Session::set("estado", "Articulo Modificado");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Articulo Modificado");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function delete($id) {
         $data["title"] = $this->_archivo["borrar"]["componente_nombre"];
         $datos = array("articulo_id" => $id);
         $this->_model->deleteArticulo($datos);
-        Session::set("estado", "Articulo Eliminado");
-        Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+        session::set("estado", "Articulo Eliminado");
+        url::redirect($this->_archivo["raiz"]["componente_enlace"]);
     }
 
 }

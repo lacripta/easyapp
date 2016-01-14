@@ -2,10 +2,10 @@
 
 namespace controllers\admin;
 
-use \helpers\Url,
-    \core\View;
+use \helpers\url,
+    \core\view;
 
-class Estilos extends \core\Controller {
+class Estilos extends \core\controller {
 
     private $componente;
     private $archivoNombre;
@@ -13,8 +13,8 @@ class Estilos extends \core\Controller {
     private $archivo;
 
     public function __construct() {
-        $this->componente = new \models\admin\Componente();
-        $this->model = new \models\admin\Estilos();
+        $this->componente = new \models\admin\componente();
+        $this->model = new \models\admin\estilos();
 
         $this->clase = "estilos";
         $this->archivoNombre = "estilos.php";
@@ -23,13 +23,13 @@ class Estilos extends \core\Controller {
         $this->archivo["raiz"]["componente_enlace"] = ADMIN . "estilos";
         $this->archivo["raiz"]["componente_url"] = DIR . ADMIN . "estilos";
         $this->archivo["raiz"]["componente_nombre"] = "Estilos de la Pagina";
-        $this->archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
+        $this->archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->archivo["raiz"]["componente_nombre"]);
 
         $this->archivo["cambiar"]["componente_archivo"] = $this->archivoNombre;
         $this->archivo["cambiar"]["componente_enlace"] = ADMIN . "estilos_cambiar";
         $this->archivo["cambiar"]["componente_url"] = DIR . ADMIN . "estilos/cambiar";
         $this->archivo["cambiar"]["componente_nombre"] = "Modificar Estilos de la Pagina";
-        $this->archivo["cambiar"]["componente_slug"] = Url::generateSafeSlug($this->archivo["cambiar"]["componente_nombre"]);
+        $this->archivo["cambiar"]["componente_slug"] = url::generateSafeSlug($this->archivo["cambiar"]["componente_nombre"]);
 
         foreach ($this->archivo as $componente) {
             $this->componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
@@ -42,9 +42,9 @@ class Estilos extends \core\Controller {
         $data["color"] = $this->model->getPropiedad("background-color");
         $data["fondo"] = $this->model->getPropiedad("background-image");
 
-        View::admintemplate("header", $data);
-        View::render($this->archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
     public function cambiar() {

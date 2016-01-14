@@ -3,7 +3,7 @@
     <li><a href="<?php echo DIR . $data["raiz"]; ?>">Menu</a></li>
 </ol>
 <legend><h3><?php echo $data["title"]; ?></h3></legend>
-<?php echo "<h3 class='text-danger'>" . \helpers\Session::pull("estado") . "</h3>"; ?>
+<?php echo "<h3 class='text-danger'>" . \helpers\session::pull("estado") . "</h3>"; ?>
 <a href="<?php echo DIR . $data["raiz"]; ?>/add" class="btn btn-info">Crear Nuevo</a>
 <a href="<?php echo DIR . $data["raiz"]; ?>/add/clase" class="btn btn-info">Crear Clase</a>
 <a href="<?php echo DIR . $data["raiz"]; ?>/add/grupo" class="btn btn-info">Crear Grupo</a>

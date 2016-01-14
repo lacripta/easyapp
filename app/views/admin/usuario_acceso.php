@@ -4,7 +4,7 @@
     <li><?php echo $data["title"]; ?></li>
 </ol>
 <legend><h3><?php echo $data["title"]; ?></h3></legend>
-<?php echo "<h3 class='text-danger'>" . \helpers\Session::pull("estado") . "</h3>"; ?>
+<?php echo "<h3 class='text-danger'>" . \helpers\session::pull("estado") . "</h3>"; ?>
 <p><br></p>
 <?php
 $archivos [] = array();

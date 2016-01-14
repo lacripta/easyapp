@@ -2,11 +2,11 @@
 
 namespace controllers\admin;
 
-use \helpers\Url,
-    \helpers\Session,
-    \core\View;
+use \helpers\url,
+    \helpers\session,
+    \core\view;
 
-class Menu extends \core\Controller {
+class Menu extends \core\controller {
 
     private $_model;
     private $_componente;
@@ -15,7 +15,7 @@ class Menu extends \core\Controller {
     public $clase;
 
     public function __construct() {
-        $this->_componente = new \models\admin\Componente();
+        $this->_componente = new \models\admin\componente();
         $this->_model = new \models\admin\menu();
 
         $this->clase = "menu";
@@ -24,43 +24,43 @@ class Menu extends \core\Controller {
         $this->_archivo["raiz"]["componente_enlace"] = ADMIN . $this->clase;
         $this->_archivo["raiz"]["componente_url"] = DIR . "admin/menu";
         $this->_archivo["raiz"]["componente_nombre"] = "Creador de Menu";
-        $this->_archivo["raiz"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
+        $this->_archivo["raiz"]["componente_slug"] = url::generateSafeSlug($this->_archivo["raiz"]["componente_nombre"]);
 
         $this->_archivo["crear"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["crear"]["componente_enlace"] = ADMIN . "menu_crear";
         $this->_archivo["crear"]["componente_url"] = DIR . "admin/menu/add";
         $this->_archivo["crear"]["componente_nombre"] = "Crear Acceso en Menu";
-        $this->_archivo["crear"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
+        $this->_archivo["crear"]["componente_slug"] = url::generateSafeSlug($this->_archivo["crear"]["componente_nombre"]);
 
         $this->_archivo["editar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["editar"]["componente_enlace"] = ADMIN . "menu_editar";
         $this->_archivo["editar"]["componente_url"] = DIR . "admin/menu/edit/";
         $this->_archivo["editar"]["componente_nombre"] = "Editar Accesos en Menu";
-        $this->_archivo["editar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
+        $this->_archivo["editar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["editar"]["componente_nombre"]);
 
         $this->_archivo["borrar"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["borrar"]["componente_enlace"] = ADMIN . $this->clase . "/delete";
         $this->_archivo["borrar"]["componente_url"] = DIR . "admin/menu/delete/";
         $this->_archivo["borrar"]["componente_nombre"] = "Quitar del Menu";
-        $this->_archivo["borrar"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
+        $this->_archivo["borrar"]["componente_slug"] = url::generateSafeSlug($this->_archivo["borrar"]["componente_nombre"]);
 
         $this->_archivo["acceso"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["acceso"]["componente_enlace"] = ADMIN . "menu_acceso";
         $this->_archivo["acceso"]["componente_url"] = DIR . "admin/menu/acceso/";
         $this->_archivo["acceso"]["componente_nombre"] = "Permisos de Acceso al Menu";
-        $this->_archivo["acceso"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["acceso"]["componente_nombre"]);
+        $this->_archivo["acceso"]["componente_slug"] = url::generateSafeSlug($this->_archivo["acceso"]["componente_nombre"]);
 
         $this->_archivo["clase"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["clase"]["componente_enlace"] = ADMIN . "menu_clase";
         $this->_archivo["clase"]["componente_url"] = DIR . "admin/menu/add/clase";
         $this->_archivo["clase"]["componente_nombre"] = "Crear Clase de Elementos";
-        $this->_archivo["clase"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["clase"]["componente_nombre"]);
+        $this->_archivo["clase"]["componente_slug"] = url::generateSafeSlug($this->_archivo["clase"]["componente_nombre"]);
 
         $this->_archivo["grupo"]["componente_archivo"] = $this->_archivoNombre;
         $this->_archivo["grupo"]["componente_enlace"] = ADMIN . "menu_grupo";
         $this->_archivo["grupo"]["componente_url"] = DIR . "admin/menu/add/grupo";
         $this->_archivo["grupo"]["componente_nombre"] = "Crear Grupo de Elementos";
-        $this->_archivo["grupo"]["componente_slug"] = Url::generateSafeSlug($this->_archivo["grupo"]["componente_nombre"]);
+        $this->_archivo["grupo"]["componente_slug"] = url::generateSafeSlug($this->_archivo["grupo"]["componente_nombre"]);
         foreach ($this->_archivo as $componente) {
             $this->_componente->createComponente($componente["componente_nombre"], $componente["componente_enlace"], $componente["componente_url"], $componente);
         }
@@ -78,7 +78,7 @@ class Menu extends \core\Controller {
         $data["editar"] = $this->_archivo["editar"]["componente_url"];
         $data["clases"] = $this->_model->getClases();
         $data["grupos"] = $this->_model->getGrupos();
-        $data["menus"] = $this->_model->getMenus(Session::get("usuario"));
+        $data["menus"] = $this->_model->getMenus(session::get("usuario"));
         $data["js"] = "
             <script>
                 function borrar_menu(id, titulo) {
@@ -87,9 +87,9 @@ class Menu extends \core\Controller {
                     }
                 }
             </script>";
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["raiz"]["componente_enlace"], $data);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["raiz"]["componente_enlace"], $data);
+        view::admintemplate("footer", $data);
     }
 
     public function add() {
@@ -130,14 +130,14 @@ class Menu extends \core\Controller {
                     'menu_componente' => trim($comp_id)
                 );
                 $id = $this->_model->crearMenu($menu_datos);
-                Session::set("estado", "Enlace Creado, $id");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Enlace Creado, $id");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["crear"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function edit($elemento) {
@@ -181,20 +181,20 @@ class Menu extends \core\Controller {
                     'menu_componente' => trim($comp_id)
                 );
                 $this->_model->editarMenu($menu_datos, array('menu_titulo' => $titulo));
-                Session::set("estado", "Enlace Modificado");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Enlace Modificado");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["editar"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function delete($id) {
         $datos = array("menu_id" => $id);
         $this->_model->deleteMenu($datos);
-        Session::set("estado", "Elemento Eliminado");
-        Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+        session::set("estado", "Elemento Eliminado");
+        url::redirect($this->_archivo["raiz"]["componente_enlace"]);
     }
 
     public function acceso($sid) {
@@ -204,9 +204,9 @@ class Menu extends \core\Controller {
         $data["componentes"] = $this->_componente->permisosUsuario($sid);
         $data["sid"] = $sid;
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["clase"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["clase"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function clase() {
@@ -229,14 +229,14 @@ class Menu extends \core\Controller {
                     'menu_clase_estado' => $estado
                 );
                 $this->_model->crearClase($clase_datos);
-                Session::set("estado", "Clase Creada");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Clase Creada");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["clase"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["clase"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     public function grupo() {
@@ -257,14 +257,14 @@ class Menu extends \core\Controller {
                     'menu_grupo_fecha' => $fecha
                 );
                 $this->_model->crearGrupo($grupo_datos);
-                Session::set("estado", "Clase Creada");
-                Url::redirect($this->_archivo["raiz"]["componente_enlace"]);
+                session::set("estado", "Clase Creada");
+                url::redirect($this->_archivo["raiz"]["componente_enlace"]);
             }
         }
 
-        View::admintemplate("header", $data);
-        View::render($this->_archivo["grupo"]["componente_enlace"], $data, $error);
-        View::admintemplate("footer", $data);
+        view::admintemplate("header", $data);
+        view::render($this->_archivo["grupo"]["componente_enlace"], $data, $error);
+        view::admintemplate("footer", $data);
     }
 
     function generaError($error, $mensaje) {

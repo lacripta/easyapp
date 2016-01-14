@@ -2,11 +2,11 @@
 
 namespace controllers\admin;
 
-use \helpers\Session,
-    \helpers\Url,
-    \core\View;
+use \helpers\session,
+    \helpers\url,
+    \core\view;
 
-class Data_Feed extends \core\Controller {
+class Data_Feed extends \core\controller {
 
     private $componente;
     private $carrusel;
@@ -16,12 +16,12 @@ class Data_Feed extends \core\Controller {
     private $producto_imagen;
 
     public function __construct() {
-        $this->componente = new \models\admin\Componente();
-        $this->carrusel = new \models\admin\Carrusel();
-        $this->producto = new \models\admin\Producto();
-        $this->novedades = new \models\admin\Novedades();
-        $this->estilos = new \models\admin\Estilos();
-        $this->producto_imagen = new \models\admin\Producto_Imagen();
+        $this->componente = new \models\admin\componente();
+        $this->carrusel = new \models\admin\carrusel();
+        $this->producto = new \models\admin\producto();
+        $this->novedades = new \models\admin\novedades();
+        $this->estilos = new \models\admin\estilos();
+        $this->producto_imagen = new \models\admin\producto_Imagen();
     }
 
     public function productos() {
