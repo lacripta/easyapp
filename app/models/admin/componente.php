@@ -174,13 +174,13 @@ class Componente extends \core\model {
                 default:
                     die('Unsupported File!'); //output error
             }
-            $File_Name = strtolower($_FILES["$file"]['name']);
+            $File_Name = $_FILES["$file"]['name'];
             $File_Ext = substr($File_Name, strrpos($File_Name, '.')); //get file extention
             $Random_Number = rand(0, 9999999999); //Random number to be added to name.
             if (move_uploaded_file($_FILES["$file"]['tmp_name'], $UploadDirectory . $File_Name)) {
                 //echo $_FILES["$file"]['tmp_name'];
-                //echo "{'url':'/easyart/img/$folder/$File_Name'}";
-                return ["estado" => TRUE, "url" => "/easyart/img/$folder/$File_Name"];
+                //echo "{'url':'/img/$folder/$File_Name'}";
+                return ["estado" => TRUE, "url" => "/img/$folder/$File_Name"];
             } else {
                 return ["estado" => FALSE];
             }
