@@ -12,17 +12,15 @@ namespace core;
  * @date June 27, 2014
  */
 
-class Config
-{
+class Config {
 
-    public function __construct()
-    {
+    public function __construct() {
 
         //turn on output buffering
         ob_start();
 
         //site address
-        define('DIR', 'http://localhost/easyapp/');
+        define('DIR', 'http://easyart.com.co/easyapp/');
 
         //set default controller and method for legacy calls
         define('DEFAULT_CONTROLLER', 'inicio');
@@ -33,10 +31,10 @@ class Config
 
         //database details ONLY NEEDED IF USING A DATABASE
         define('DB_TYPE', 'mysql');
-        define('DB_HOST', 'localhost');
-        define('DB_NAME', 'easyart');
-        define('DB_USER', 'root');
-        define('DB_PASS', '');
+        define('DB_HOST', 'mysql.hostinger.co');
+        define('DB_NAME', 'u555867697_ea');
+        define('DB_USER', 'u555867697_ea');
+        define('DB_PASS', 'julylau2015');
         define('PREFIX', 'gd_');
 
         //set prefix for sessions
