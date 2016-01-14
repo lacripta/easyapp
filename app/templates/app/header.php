@@ -4,11 +4,11 @@
 
         <!-- Site meta -->
         <meta charset="utf-8">
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                        ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/core/config.php                                                                         ?></title>
 
         <!-- CSS -->
         <?php
-        $menu = new models\admin\Menu();
+        $menu = new models\admin\menu();
         $dropdowns;
         $elementos = array();
         $grupo = "";
